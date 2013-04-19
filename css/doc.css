@@ -248,13 +248,81 @@ body{
 .span200 h3{
   font-size: 14px;
   color: #909090;
-  font : 14px bold 'Architects Daughter', cursive, 'Hiragino Sans GB', Helvetica, Arial
+  font : 14px bold 'Architects Daughter', cursive, 'Hiragino Sans GB', Helvetica, Arial;
 }
-
+.font-Arch{
+    font : 14px bold 'Architects Daughter', cursive, 'Hiragino Sans GB', Helvetica, Arial;
+}
 .bordertop{
   border-top: 1px solid #dbdbdb;
 }
 
 .pt40{
   padding-top: 40px;
+}
+
+.pb20{
+  padding-bottom: 20px;
+}
+
+.plr40{
+  padding: 0 40px;
+}
+.w600{
+  width: 600px;
+}
+.guide{
+  margin-top: 40px;
+  display: inline-block;
+  width: 100%;
+}
+
+.noborder table tr td{
+  border: none;
+}
+
+.table{
+  font : 14px bold 'Architects Daughter', cursive, 'Hiragino Sans GB', Helvetica, Arial;
+}
+
+.demo{
+  text-align: center;
+  position: relative;
+}
+
+#showcase{
+    position: relative;
+    z-index: 2;
+    background: #f0f0f0 url(../images/bg.png);
+    -webkit-transform: translate3d(0, 0, 0);
+       -moz-transform: translate(0);
+    -webkit-perspective: 1000;
+       -moz-perspective: 1000;
+    -webkit-transform-style: preserve-3d;
+       -moz-transform-style: preserve-3d;
+}
+
+#showcase td{
+  cursor: pointer;
+}
+
+#showcase .api{
+    float: right;
+    padding-right: 20px;
+    visibility: hidden;
+}
+.api{
+  float: right;
+}
+#showcase td:hover .api{
+    visibility: visible;
+}
+
+#place{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 980px;
+  height: 216px;
+  background: #f0f0f0 url(../images/bg.png);
 }

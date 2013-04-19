@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8' />
+        <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+        <meta name="description" content="brix_api : 对brix文档的建设模型" />
+        <title>brix_api</title>
+        
+        <!-- brix资源文件 -->
+        <script type="text/javascript" src="http://a.tbcdn.cn/s/kissy/1.3.0/kissy-min.js"></script>
+        <script src="http://a.tbcdn.cn/apps/e/brix/2.0/brix-min.js" bx-config="{debug:true,autoConfig:true,componentsPath:'./',importsPath:'./'}"></script>
+
+        <!-- doc.css文档自用css -->
+        <link rel="stylesheet" href="css/bootstrap/css/bootstrap.2.3.1.min.css" type="text/css">
+        <link rel="stylesheet" href="css/doc.css" type="text/css">
+        
+    </head>
+    <body>
+       <header class="page-header">
+            <div class="logo">
+                <a class="brand" href="index.html">
+                    <img src="images/logo.png">
+                </a>
+            </div>
+            <nav class="minimal-navigation">
+                <ul>
+                    <li><a href="/categories.html">简介</a></li>
+                    <li><a href="/categories.html">文档</a></li>
+                    <li><a href="/pages.html">下载</a></li>
+                    <li><a href="/tags.html">文章</a></li>
+                    <li><a href="/archive.html">关于</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="content">
+            <div>
+                <h2>3分钟学会使用brix</h2>
+                <p class="w600">本文旨在让大家学习到怎么快速使用brix组件。同时让每个人体验下基于约定的开发的便捷。只要会使用一个组件那么剩下的组件都将是按照同样的引用方法引用。只是具体的参数需要根据具体组件去设置。我们将使用计时器作为demo介绍brix的具体使用方法。</p>
+            </div>
+            <section class="mt20">
+                <header class="center-text">
+                    <h5>demo</h5>
+                </header>
+                <div id="demoplace" class="demo">
+                </div>
+                <header class="center-text">
+                    <h5>demo</h5>
+                </header>
+            </section>
+            <section class="mt20">
+                <p>来看看怎么去引用这个简单的计时组件</p>
+                <p>首先请确保以下资源在你的页面有所引用</p>
+                <form class="bs-docs-example" style="padding-left:66px;">
+                    <p>&lt;script type="text/javascript" src="http://a.tbcdn.cn/s/kissy/1.3.0/kissy-min.js"&gt;&lt;/script&gt;</p>  
+                    <p>&lt;script src="http://a.tbcdn.cn/apps/e/brix/1.0/brix-min.js" bx-config="{autoConfig:true,componentsPath:'./',importsPath:'./'}"&gt;&lt;/script&gt;
+                    </p>                           
+                </form>
+                <p>资源引入完成之后，我们先引入一段模板。</P>
+                <form class="bs-docs-example" style="padding-left:66px;">
+                    <p>&lt;script type="text/tmpl" id="timer_tmpl"&gt;
+                        &lt;span class="timer-title">距离你看完还剩：&lt;/span>
+                        {{#m}}
+                            &lt;span bx-tmpl="m" bx-datakey="m" class="timer-mins timer-num"><!--bx-tmpl="m" bx-datakey="m"-->{{m}}<!--bx-tmpl="m"-->
+                            &lt;/span>分
+                        {{/m}}
+                        {{#s}}
+                            &lt;span bx-tmpl="s" bx-datakey="s" class="timer-secs timer-num"><!--bx-tmpl="s" bx-datakey="s"-->{{s}}<!--bx-tmpl="s"-->
+                            &lt;/span>
+                            {{#hs}}.&lt;span bx-tmpl="hs" bx-datakey="hs" class="timer-hsecs timer-num"><!--bx-tmpl="hs" bx-datakey="hs"-->{{hs}}<!--bx-tmpl="hs"-->&lt;/span>
+                            {{/hs}}秒
+                        {{/s}}
+                    &lt;/script&gt;
+                    </p>
+                </form>
+                <p>解析：是一段基于mustache模板引擎的模板代码。在这里不过多的说明模板的逻辑。关于模板请参考<a>模板解读</a>。为了不导致页面符号的冲突和便于管理模板，我们把模板代码放到‘&lt;script>&lt;/script>’标签内，通过其id对其进行引用。至于组件模板的使用方法，你会在每个组件的讲解页面找到其格式说明。</p>
+                <form class="bs-docs-example" style="padding-left:66px;">
+                    <p>
+                        &lt;div id="timercase" bx-name="timer" class="timer" bx-config="{tmpl:'#timer_tmpl',updateTime:180000,units:'m',interval:100}" style="font-size: 22px;padding: 20px 0;"&gt;&lt;/div&gt;
+                    </p>
+                </form>
+                <p>这里是展现元素，也就你要把刚才那段代码变成html之后要渲染到上面那个div里面。我们有说brix是基于约定的，所以在元素上会放置很多钩子。bx-name标识需要用的组件，如果引用的是我们提供的基础组件，只要bx-name和引用组件名称一致即可。然后bx-config是组件的配置项。tmpl表示使用的模板，看看后面的值其实，就是上面模板的id啊。然后我们就要初始化组件。</p>
+                <form class="bs-docs-example" style="padding-left:66px;">
+                    <p>
+                        &lt;script&gt;
+                            KISSY.use('brix/core/pagelet',function(S,Pagelet){
+                                var pagelet = new Pagelet({
+                                    tmpl: '#timercase'
+                                });
+                                pagelet.addBehavior();
+                            });
+                        &lt;/script&gt;
+                    </p>
+                </form>
+                <p>这种写法好像比较难以理解。主要是很多人在此看到Pagelet这个对象难以理解。那么我们来打个比喻。你可以把Pagelet看成是一个工匠，由brix提供给你，然后它可以根据你指定的tmpl找到这个元素，然后根据bx-name指定的名称帮组装你需要的组件。下面是整个页面代码</P>
+                <form class="bs-docs-example" style="padding-left:66px;">
+                    <p>
+                        <p>&lt;script type="text/javascript" src="http://a.tbcdn.cn/s/kissy/1.3.0/kissy-min.js"&gt;&lt;/script&gt;</p>  
+                        <p>&lt;script src="http://a.tbcdn.cn/apps/e/brix/1.0/brix-min.js" bx-config="{autoConfig:true,componentsPath:'./',importsPath:'./'}"&gt;&lt;/script&gt;
+                        </p> 
+                        <p>&lt;script type="text/tmpl" id="timer_tmpl"&gt;
+                        &lt;span class="timer-title">距离你看完还剩：&lt;/span>
+                        {{#m}}
+                            &lt;span bx-tmpl="m" bx-datakey="m" class="timer-mins timer-num"><!--bx-tmpl="m" bx-datakey="m"-->{{m}}<!--bx-tmpl="m"-->
+                            &lt;/span>分
+                        {{/m}}
+                        {{#s}}
+                            &lt;span bx-tmpl="s" bx-datakey="s" class="timer-secs timer-num"><!--bx-tmpl="s" bx-datakey="s"-->{{s}}<!--bx-tmpl="s"-->
+                            &lt;/span>
+                            {{#hs}}.&lt;span bx-tmpl="hs" bx-datakey="hs" class="timer-hsecs timer-num"><!--bx-tmpl="hs" bx-datakey="hs"-->{{hs}}<!--bx-tmpl="hs"-->&lt;/span>
+                            {{/hs}}秒
+                        {{/s}}
+                    &lt;/script&gt;
+                    </p>
+                     <p>
+                        &lt;div id="timercase" bx-name="timer" class="timer" bx-config="{tmpl:'#timer_tmpl',updateTime:180000,units:'m',interval:100}" style="font-size: 22px;padding: 20px 0;"&gt;&lt;/div&gt;
+                    </p>
+                        &lt;script&gt;
+                            KISSY.use('brix/core/pagelet',function(S,Pagelet){
+                                var pagelet = new Pagelet({
+                                    tmpl: '#timercase'
+                                });
+                                pagelet.addBehavior();
+                            });
+                        &lt;/script&gt;
+                    </p>
+                </form>
+                <p>现在看下计时器，应该还剩下点时间。不妨新建个html文件，把代码copy进去运行下试试看。不妨自己改改模板的内容看看会发生什么。</p>
+                <p>如果你开始感觉学习brix其实是一个比较轻松愉快的过程，我们建议你可以去学习写一个brix组件。请参考<a href="">brix权威指南</a></p>
+            </section>
+        </div>
+    </body>
+    <script type="text/javascript">
+        KISSY.use('components/showcase/',function(S,ShowCase){
+            var showcase = new ShowCase({
+                tmpl: '#demoplace',
+                path: '/views/smallcases/timer.html'
+            });
+        });
+    </script>
+</html>

@@ -8,7 +8,7 @@
         
         <!-- brix资源文件 -->
         <script type="text/javascript" src="http://a.tbcdn.cn/s/kissy/1.3.0/kissy-min.js"></script>
-        <script src="http://a.tbcdn.cn/apps/e/brix/1.0/brix-min.js" bx-config="{autoConfig:true,componentsPath:'./',importsPath:'./'}"></script>
+        <script src="http://a.tbcdn.cn/apps/e/brix/2.0/brix-min.js" bx-config="{debug:true,autoConfig:true,componentsPath:'./',importsPath:'./'}"></script>
 
         <!-- doc.css文档自用css -->
         <link rel="stylesheet" href="css/bootstrap/css/bootstrap.2.3.1.min.css" type="text/css">
@@ -33,57 +33,61 @@
         </header>
         <div class="content">
             <div class="summary">
-                <h3>提供便捷的组件使用和开发的极致体验</h2>
+                <h3>提供便捷的组件使用和开发的极致体验</h3>
                 <h5 class="gray">我们致力于改善brix的使用体验，使得brix让引用者使用公共平台的基础组件快速搭建自己的应用，</h5>
                 <h5 class="gray">而开发者可以学习到如何使用brix按照自己的需求去快速开发一个组件。</h5>
-                <a href="views/3minutes/intro.html" class="btn btn-large btn-info quick" style="width:200px;margin-top: 14px;">
+                <a href="3minutes.html" class="btn btn-large btn-info quick" style="width:200px;margin-top: 14px;">
                     3分钟让你学会如何抄起"板砖"
                 </a>
             </div>
-            <section class="mt20">
+            <section class="mt20 pb20" style="height: 318px;">
                 <header class="center-text">
-                    <h5>基础业务组件列表</h5>
+                    <h5>基础业务组件，点击直接预览效果</h5>
                 </header>
                 <div>
-                    <table>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </table>
-                </div>
+                    <div class="demo noborder plr40">
+                        <table id="showcase" class="table">
+                            <tr>
+                                <td path="/views/smallcases/calendar.html">日历 Calendar<a class="api" href="">API</a></td>
+                                <td path="/views/smallcases/calendar.html">表格 Tables</td>
+                                <td>分页 Pagination</td>
+                                <td>下拉菜单 Dropdown</td>
+                            </tr>
+                            <tr>
+                                <td>日期选择 DatePicker</td>
+                                <td>图表 Charts</td>
+                                <td>对话框 Dialog</td>
+                                <td>提示组件 Tips</td>
+                            </tr>
+                            <tr>
+                                <td>推拉门 Kwicks</td>
+                                <td>搜索框 SearchBox</td>
+                                <td>滑动菜单 Lavalamp</td>
+                                <td>树形菜单 SideNav</td>
+                            </tr>
+                            <tr>
+                                <td>面包屑 Breadcrumbs</td>
+                                <td>色彩选择 ColorPicker</td>
+                                <td>打分组件 StarRating</td>
+                                <td>开关组件 Switcher</td>
+                            </tr>
+                            <tr>
+                                <td path="/views/smallcases/timer.html">计时器 Timer<a class="api" href="">API</a></td>
+                                <td>步骤条 Flowsteps</td>
+                                <td>滑块 Slider</td>
+                                <td>就地编辑 InplaceEditor</td>
+                            </tr>
+                            <tr>
+                                <td>加载动画 Loading</td>
+                                <td>信息框 Msgbox</td>
+                                <td>页尾 Footer</td>
+                                <td></td>
+                            </tr>
+                        </table>
+                        <div id="place">
+                        </div>
+                    </div>
+                </div>   
             </section>
             <section class="bordertop pt40">
                 <div class="span200">
@@ -103,9 +107,9 @@
                     <p style="line-height:18px;">基于约定大于配置的原则。我们使用bx-name、bx-path、bx-config、bx-tmpl、bx-datakey去简化组件使用配置的繁琐步骤。</p>
                 </div> 
             </section>
-            <div class="summary" style="margin-top: 40px;">
+            <div class="summary guide">
                 <h5 class="gray">我们也提供进一步学习和使用brix的说明，请尽情享受brix带来的极致体验。</h5>
-                <a href="views/3minutes/intro.html" class="btn btn-large btn-info quick" style="width:200px;margin-top: 14px;">
+                <a href="definitiveguide.html" class="btn btn-large btn-info quick" style="width:200px;margin-top: 14px;">
                     brix开发者权威指南
                 </a>
             </div>
@@ -126,4 +130,16 @@
             </section>
         </footer>
     </body>
+    <script type="text/javascript">
+        KISSY.use('components/showcase/',function(S,ShowCase){
+            var showcase = new ShowCase({
+                tmpl: '#showcase',
+                eltag: 'td',//挂载时间的元素tag
+                place: '#place',
+                transition : true,//是否在展示的时候用动画切换
+                transtype : '',
+                mod: 'S'//--S==>显示替换
+            });
+        });
+    </script>
 </html>

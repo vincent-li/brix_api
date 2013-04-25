@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Brix Searchbox Demo</title>
+    <link type="text/css" rel="stylesheet" href="../../../src/style/brix-min.css" charset="utf-8">
+    <link rel="stylesheet" href="../../../src/gallery/searchbox/index.css">
+    <link rel="stylesheet" href="../../assets/doc.css">
+    <script src="http://a.tbcdn.cn/s/kissy/1.3.0/seed.js"></script>
+    <script src="../../../src/core/brix.js" bx-config="{autoConfig:true,fixed:'src/',autoPagelet:true}"></script>
+    <style>
+        .container {
+            width: 100%;
+            background-color: #4A4A4A;
+        }
+        .container .common-search {
+            margin: 30px;
+            padding: 100px;
+        }
+    </style>
+</head>
+<body style="min-height:460px">
+    <div class="container">
+        <div class="common-search clearfix" id="J_searchbox">
+                <form class="search-form" target="_blank">
+                <div class="s-ipt-container">
+                    <input type="search" class="searchbox-input" accesskey="s" bx-name="placeholder" autocomplete="off" name="q" value="" placeholder="要购物，先一淘" maxlength="512" data-autofocus="autofocus">
+                </div>
+                <div class="s-menu">
+                    <div class="s-menu-selected"><span>商品</span><i>&#405;</i></div>
+                    <ul class="s-menu-list" data-redirect="true">
+                        <li class="selected"  data-suggest-api="http://suggest.taobao.com/sug?area=etao&code=utf-8">
+                            <a target="_self" href="http://s.etao.com/search" hidefocus="true" data-stat-submit="dgp=t0&dgl=t&dgt=11">商品</a>
+                        </li>
+                        <li data-suggest-api="http://suggest.taobao.com/sug?area=etao&code=utf-8"><a target="_self" href="http://s8.etao.com/search?spm=1002.1.0.21&t=0" hidefocus="true" data-stat-submit="dgp=t0&dgl=t&dgt=11">热卖</a></li>
+                        <!--<li><a target="_self" href="http://web.etao.com/search?t=5" hidefocus="true">网页</a></li>
+                        <li><a target="_self"  href="http://www.etao.com/search?t=0"  hidefocus="true">资讯</a></li> -->  
+                        <li><a target="_self"  href="http://8.etao.com/etao.htm?ly=e" hidefocus="true" id="taoba_href">淘吧</a></li>   
+                        <!--<li><a target="_self" href="http://tuan.etao.com/list.htm"  hidefocus="true">团购</a></li>
+                        <li><a target="_self"  href="http://price.etao.com/search.htm"  hidefocus="true">降价</a></li>-->
+                        <li><a target="_self"  href="http://quan.etao.com/search.htm"  hidefocus="true">优惠券</a></li>
+                    </ul>
+                </div>
+                <div class="s-btn-container">
+                    <input type="submit" value="&#337;">
+                </div>
+                </form>
+        </div>
+
+       <div class="common-search clearfix" id="J_searchbox2">
+                <form class="search-form">
+                <div class="s-ipt-container">
+                    <input  type="search" class="searchbox-input" accesskey="s" bx-name="placeholder" autocomplete="off" name="q" value="" placeholder="要购物，先一淘" maxlength="512" data-autofocus="autofocus">
+                </div>
+                <div class="s-menu">
+                    <div class="s-menu-selected"><span>商品</span><i>&#405;</i></div>
+                    <ul class="s-menu-list" data-redirect="true">
+                        <li class="selected"  data-suggest-api="http://suggest.taobao.com/sug?area=etao&code=utf-8">
+                            <a target="_self" href="http://s.etao.com/search" hidefocus="true" data-stat-submit="dgp=t0&dgl=t&dgt=11">商品</a>
+                        </li>
+                        <li data-suggest-api="http://suggest.taobao.com/sug?area=etao&code=utf-8"><a target="_self" href="http://s8.etao.com/search?spm=1002.1.0.21&t=0" hidefocus="true" data-stat-submit="dgp=t0&dgl=t&dgt=11">热卖</a></li>
+                        <!--<li><a target="_self" href="http://web.etao.com/search?t=5" hidefocus="true">网页</a></li>
+                        <li><a target="_self"  href="http://www.etao.com/search?t=0"  hidefocus="true">资讯</a></li> -->  
+                        <li><a target="_self"  href="http://8.etao.com/etao.htm?ly=e" hidefocus="true" id="taoba_href">淘吧</a></li>   
+                        <!--<li><a target="_self" href="http://tuan.etao.com/list.htm"  hidefocus="true">团购</a></li>
+                        <li><a target="_self"  href="http://price.etao.com/search.htm"  hidefocus="true">降价</a></li>-->
+                        <li><a target="_self"  href="http://quan.etao.com/search.htm"  hidefocus="true">优惠券</a></li>
+                    </ul>
+                </div>
+                <div class="s-btn-container">
+                    <input type="submit" value="&#337;">
+                </div>
+                </form>
+        </div>
+    </div>
+
+<script>
+    KISSY.ready(function (S) {
+        KISSY.use("brix/gallery/searchbox/", function (S, Searchbox) {
+            var searchbox = new Searchbox();
+            var searchbox2 = new Searchbox({
+                el : '#J_searchbox2'
+            });
+            /*searchbox.on('afterLoad', function(){
+                alert('xx');
+            });*/
+        });
+    });
+</script>
+</body>
+</html>

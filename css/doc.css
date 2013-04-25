@@ -5,6 +5,220 @@ body{
 /*引入字体*/
 @import url(http://fonts.googleapis.com/css?family=Architects+Daughter);
 
+/*--------代码高亮------------*/
+.highlight {
+  background: #f0f0f0;
+}
+.highlight .c {
+  color: #60a0b0;
+  font-style: italic;
+}
+.highlight .err {
+  border: 1px solid #ff0000;
+}
+.highlight .k {
+  color: #007020;
+  font-weight: bold;
+}
+.highlight .o {
+  color: #666666;
+}
+.highlight .cm {
+  color: #60a0b0;
+  font-style: italic;
+}
+.highlight .cp {
+  color: #007020;
+}
+.highlight .c1 {
+  color: #60a0b0;
+  font-style: italic;
+}
+.highlight .cs {
+  color: #60a0b0;
+  background-color: #fff0f0;
+}
+.highlight .gd {
+  color: #a00000;
+}
+.highlight .ge {
+  font-style: italic;
+}
+.highlight .gr {
+  color: #ff0000;
+}
+.highlight .gh {
+  color: #000080;
+  font-weight: bold;
+}
+.highlight .gi {
+  color: #00a000;
+}
+.highlight .go {
+  color: #808080;
+}
+.highlight .gp {
+  color: #c65d09;
+  font-weight: bold;
+}
+.highlight .gs {
+  font-weight: bold;
+}
+.highlight .gu {
+  color: #800080;
+  font-weight: bold;
+}
+.highlight .gt {
+  color: #0040d0;
+}
+.highlight .kc {
+  color: #007020;
+  font-weight: bold;
+}
+.highlight .kd {
+  color: #007020;
+  font-weight: bold;
+}
+.highlight .kn {
+  color: #007020;
+  font-weight: bold;
+}
+.highlight .kp {
+  color: #007020;
+}
+.highlight .kr {
+  color: #007020;
+  font-weight: bold;
+}
+.highlight .kt {
+  color: #902000;
+}
+.highlight .m {
+  color: #40a070;
+}
+.highlight .s {
+  color: #4070a0;
+}
+.highlight .na {
+  color: #4070a0;
+}
+.highlight .nb {
+  color: #007020;
+}
+.highlight .nc {
+  color: #0e84b5;
+  font-weight: bold;
+}
+.highlight .no {
+  color: #60add5;
+}
+.highlight .nd {
+  color: #555555;
+  font-weight: bold;
+}
+.highlight .ni {
+  color: #d55537;
+  font-weight: bold;
+}
+.highlight .ne {
+  color: #007020;
+}
+.highlight .nf {
+  color: #06287e;
+}
+.highlight .nl {
+  color: #002070;
+  font-weight: bold;
+}
+.highlight .nn {
+  color: #0e84b5;
+  font-weight: bold;
+}
+.highlight .nt {
+  color: #062873;
+  font-weight: bold;
+}
+.highlight .nv {
+  color: #bb60d5;
+}
+.highlight .ow {
+  color: #007020;
+  font-weight: bold;
+}
+.highlight .w {
+  color: #bbbbbb;
+}
+.highlight .mf {
+  color: #40a070;
+}
+.highlight .mh {
+  color: #40a070;
+}
+.highlight .mi {
+  color: #40a070;
+}
+.highlight .mo {
+  color: #40a070;
+}
+.highlight .sb {
+  color: #4070a0;
+}
+.highlight .sc {
+  color: #4070a0;
+}
+.highlight .sd {
+  color: #4070a0;
+  font-style: italic;
+}
+.highlight .s2 {
+  color: #4070a0;
+}
+.highlight .se {
+  color: #4070a0;
+  font-weight: bold;
+}
+.highlight .sh {
+  color: #4070a0;
+}
+.highlight .si {
+  color: #70a0d0;
+  font-style: italic;
+}
+.highlight .sx {
+  color: #c65d09;
+}
+.highlight .sr {
+  color: #235388;
+}
+.highlight .s1 {
+  color: #4070a0;
+}
+.highlight .ss {
+  color: #517918;
+}
+.highlight .bp {
+  color: #007020;
+}
+.highlight .vc {
+  color: #bb60d5;
+}
+.highlight .vg {
+  color: #bb60d5;
+}
+.highlight .vi {
+  color: #bb60d5;
+}
+.highlight .il {
+  color: #40a070;
+}
+/*--------代码高亮------------*/
+
+/*-----------------------document style------------------------------------*/
+
+h1, h2, h3, h4, h5, h6{
+    margin: 14px 0;
+}
+
 /* Bootstrap code examples
 -------------------------------------------------- */
 
@@ -22,27 +236,38 @@ body{
 }
 
 /* Echo out a label for the example */
-.bs-docs-example:after {
-  content: "Example";
-  position: absolute;
-  top: -1px;
-  left: -1px;
-  padding: 0px 7px;
-  font-size: 12px;
-  font-weight: bold;
-  background-color: #f5f5f5;
-  border: 1px solid #ddd;
-  color: #9da0a4;
-  -webkit-border-radius: 4px 0 4px 0;
-     -moz-border-radius: 4px 0 4px 0;
-          border-radius: 4px 0 4px 0;
+.bs-docs-example:after{
+    content: "Example";
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    padding: 0px 7px;
+    font-size: 12px;
+    font-weight: bold;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    color: #9da0a4;
+    -webkit-border-radius: 4px 0 4px 0;
+       -moz-border-radius: 4px 0 4px 0;
+            border-radius: 4px 0 4px 0;
+}
+
+.bs-docs-code{
+    background-color: #ffe;
+    border: 1px solid #ddd;
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;
 }
 
 /* Remove spacing between an example and it's code */
 .bs-docs-example + .prettyprint {
-  margin-top: -20px;
-  padding-top: 15px;
+    margin-top: -20px;
+    padding-top: 15px;
 }
+
+/*-----------------------document style------------------------------------*/
+
 
 /*fork me */
 #forkme_banner {
@@ -325,4 +550,76 @@ body{
   width: 980px;
   height: 216px;
   background: #f0f0f0 url(../images/bg.png);
+}
+
+.logo-ab{
+    position: absolute;
+    top: 60px;
+    left: 119px;
+}
+/*左侧菜单栏*/
+.nav{
+    position: absolute;
+    width: 140px;
+    height: 100%;
+    background: none;
+}
+.nav > .top{
+    position: relative;
+    top: 0px;
+    left: 0px;
+    border-right: 5px solid #499AD8;
+    width: 100%;
+    height: 46px;
+}
+.nav > .down{
+    position: relative;
+    top: 55px;
+    left: 0px;
+    border-right: 5px solid #499AD8;
+    width: 100%;
+    padding-top: 30px;
+}
+
+.nav .down ul li{
+    list-style: none;
+    font-size: 12px;
+}
+
+.nav > .down > .entries{
+    position: relative;
+    left: 127px;
+    width: 206px;
+}
+
+.nav .down h5{
+    text-align: right;
+    padding-right: 10px;
+}
+
+#page{
+    max-width: 740px;
+    left: 280px;
+    position: relative;
+}
+
+#menutree li a {
+    padding: 3px 5px;
+}
+
+#menutree li.current a {
+    color: #ffffff;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    background-color: #5bb75b;
+    *background-color: #51a351;
+    background-image: -moz-linear-gradient(top, #62c462, #51a351);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#62c462), to(#51a351));
+    background-image: -webkit-linear-gradient(top, #62c462, #51a351);
+    background-image: -o-linear-gradient(top, #62c462, #51a351);
+    background-image: linear-gradient(to bottom, #62c462, #51a351);
+    background-repeat: repeat-x;
+    border-color: #51a351 #51a351 #387038;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff62c462', endColorstr='#ff51a351', GradientType=0);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }

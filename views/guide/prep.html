@@ -1,0 +1,124 @@
+<div id="page">
+    <blockquote>
+        <h3>Brix 前瞻</h3>
+        <small>有些东西我们需要提前说明</small>
+    </blockquote>
+
+    <article>
+    <section class="content">
+        <p>
+            顾名思义，这里我们主要是根据一些曾经有过学习经历的朋友提供的意见，首先解释一些概念。明确一些标记的意义及用法。不至于让大家在以后的学习中产生过多的困惑。请注意，本文默认你已经看过<a href="/3minutes.html">3分钟指引</a>，并且对brix有一定的认知。能够引用基础业务组件。可以不求甚解。下面我们将对一些似曾相识的东西进行讲解。
+        </p>
+        <h4>Brix 组件的两种使用方式</h4>
+        <p>下面的代码也许我们似曾相识</p>
+<pre>
+<code>
+    &lt;div id="timercase" bx-name="timer" class="timer" bx-config="{tmpl:'#timer_tmpl',updateTime:180000,units:'m',interval:100}" &gt;&lt;/div&gt;
+
+    &lt;script&gt;
+        KISSY.use('brix/core/pagelet',function(S,Pagelet){
+            var pagelet = new Pagelet({
+                tmpl: '#timercase'
+            });
+            pagelet.addBehavior();
+        });
+    &lt;/script&gt;        
+</code>
+</pre>
+    <p>
+        这是我们在3分钟指引中使用的方式。这种方式是使用<a href="#!hooks">brix钩子</a>指定组件需要的参数，使用brix内置类Pagelet自动加载组件。看下Pagelet都干了什么，当我们执行<code>var pagelet = new Pagelet({tmpl: '#timercase'});</code>这句的时候，Pagelet初始化函数，会根据tmpl的设置找到<code>#timercase</code>元素，然后根据bx-name获取组件。加载并且渲染。
+    </p>
+    <p>这里有个问题需要解释，有同学不理解，bx-name指定完了，Pagelet类知道从哪里下载组件的js代码吗？为什么我自己的组件这么写加载不了？</p>
+    <p>需要说明bx-name和bx-path是配合使用的，也就是不仅仅要指定组件名称还需要组件路径。当且仅当，你引用的是平台提供的基础业务组件，并且bx-name等于组件名，就不用写bx-path。我们会按照约定从cdn上下载相应的组件代码。</p>
+    <p>假设你自己写了一个组件，目录结构如下：</p>
+<div class="highlight">
+<pre><code class="bash">
+my-project-root
+└──components
+    └── mycomponent
+        └── indx.js
+</code></pre>
+</div>
+    <p>那么我们引用这个组件：<code>&lt;div bx-name="mycomponent" bx-path="components/mycomponent/" &gt;&lt;/div&gt;</code></p>
+    <p>我们在首页已经列出了所有基础业务组件，你可以点击预览，点击api将查看具体的组件引用方式。以下是基础业务组件的存放路径以及规则。</p>
+<div class="highlight">
+<pre><code class="bash">brix
+├── demo
+│   └── gallery
+│       └── bx-name
+│           ├── bx-name.html
+│           └── bx-name.less
+└── src
+    └── gallery
+        └── bx-name
+            └── index.js
+            └── bx-name.css
+</code></pre>
+</div>
+    <p>这里的bx-name就是我们需要的组件名称。这么做只是方便很多引用基础业务组件的朋友。还有另外一种大家熟知的使用方式，就是new object的方式。</p>
+<pre>
+<code>
+    &lt;div id="timercase" class="timer" &gt;&lt;/div&gt;
+    &lt;script type="text/javascript"&gt;
+        KISSY.use('brix/gallery/timer/',function(S,Timer){
+            var timer = new Timer({
+                container : '.timer',
+                tmpl:'#timer_tmpl',
+                updateTime:180000,
+                units:'m',
+                interval:100
+            });
+        });
+    &lt;/script&gt;
+</code>
+</pre>
+    <p>看到这里大家应该明白了，<code>KISSY.use('brix/gallery/timer/',function(S,Timer){----code---});</code>这种引用方式是KISSY的use方法。这里不需要大家把路径写到index.js，只要写到上层组件文件夹的名称就好了。剩下的就是约定了。我们会自动帮助大家加载timer下的index.js文件。</p>
+    <p>看看里面的使用，大家会看到参数{}部分，大部分内容和bx-config是一致的。只是多了<code>container</code>参数，这个是brix渲染使用的参数，容器节点，就是要把模版渲染到何处。如果不填的话，默认渲染到body下面。</p>
+
+    <h4>bx-config在引用brix.js中的使用</h4>
+    <p>有些朋友对于引用brix.js时候有些参数搞不明白。在这里做些说明。</p>
+<pre>
+<code>
+    &lt;script type="text/javascript" src="http://a.tbcdn.cn/s/kissy/1.3.0/kissy-min.js"&gt;&lt;/script&gt;  
+    &lt;script src="http://a.tbcdn.cn/apps/e/brix/1.0/brix-min.js" bx-config="{autoConfig:true,componentsPath:'./',importsPath:'./'}"&gt;&lt;/script&gt;
+</code>
+</pre>
+    <p><code>bx-config="{debug:true,autoConfig:true,componentsPath:'./',importsPath:'./'}"</code></p>
+    <p>下面看下brix.js节点参数具体有些什么：</p>
+<pre>
+<code>  
+ *  bx-config节点说明：
+ *     autoConfig：自动配置包和map
+ *     autoPagelet：自动渲染body节点下的所有bx-name组件
+ *     componentsPath：项目组件包路径
+ *     componentsTag：项目组件时间戳
+ *     importsPath：项目公用组件包路径
+ *     importsTag：项目公用组件时间戳
+ *     gallery：组件版本配置
+ *     tag：核心组件的时间戳
+ *     debug:是否启用非压缩版本，如果不配置就会默认加载压缩版本的js。
+</code>
+</pre> 
+    <p>这里对一些应用开发常用的字段做出解释。</p>
+    <p><code>componentsPath/componentsTag</code>这两个标志是本地项目中组件的地址。<code>./</code>表示当前目录。</p>
+<pre><code class="bash">
+my-project-root
+└──components
+    └── mycomponent
+        └── indx.js
+└──other-folder
+</code></pre>
+    <p>看下上面的路径，如果我们设置<code>componentsPath:'./'</code>,当我们使用<code>KISSY.use('components/mycomponent/',function(S,C){})</code>这样的方式去引用组件的时候，brix会下载<code>my-project-root/components/mycomponent/index.js?t=componentsTag</code>。如果我们设置<code>componentsPath:'/other-folder/.'</code>，那brix会去下载<code>my-project-root/other-folder/components/mycomponent/index.js?t=componentsTag</code>，说白了，就是你要告诉brix你自己项目中的组件位置，而componentsTag就是跟在文件后面的时间戳，这个brix会给出一个当前时间戳，可以不用设置。</p>
+    <p>顺便提下<code>importsPath/importsTag</code>用法和上面两兄弟一样，只是这里代表你引用的第三方组件路径。</p>
+    <p><code>gallery</code>,表示当前组件版本，一般是用于组件管理的。也就是说你引用官方业务组件的时候可能会希望使用指定版本的组件。在这里标识下就可以了。设置如下。</p>
+<pre><code class="bash">
+gallery : {
+    'timer' : '1.0',
+    //这么写都看的懂吧，bx-name组件名称作为key，值就是版本号。
+    'bx-name' : '1.0'
+}
+</code></pre>
+    <p><code>debug</code>,当这个值为true时，brix会下载未压缩的版本，也就是index.js,不标识或者为fasle时，brix会下载index-min.js。至于为啥叫index，index-min，只是一种约定，遵守即可。</p>
+    </section>
+    </article>
+</div>

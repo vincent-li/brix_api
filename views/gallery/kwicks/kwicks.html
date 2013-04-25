@@ -1,0 +1,149 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>Brix Kwicks Demo</title>
+        <link type="text/css" rel="stylesheet" href="http://a.tbcdn.cn/s/kissy/1.2.0/css/base-min.css" charset="utf-8">
+        <link type="text/css" rel="stylesheet" href="kwicks.css" charset="utf-8">
+        <link rel="stylesheet" href="../../assets/doc.css">
+        <script src="http://a.tbcdn.cn/s/kissy/1.3.0/seed.js"></script>
+        <script src="../../../src/core/brix.js" bx-config="{autoConfig:true,fixed:'src/'}"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div id="example7">
+                
+            </div>
+            <h1>A la Mootools</h1>
+            <div id="example1">
+                <ul id="ulkwicks1" class="kwicks" >
+                    <li class="kwick1"></li>
+                    <li class="kwick2"></li>
+                    <li class="kwick3"></li>
+                    <li class="kwick4"></li>
+                </ul>
+            </div>
+            <h1>Using "Active" Class</h1>
+            <div id="example2">
+                <ul id="ulkwicks2" class="kwicks" >
+                    <li class="kwick1"></li>
+                    <li class="kwick2"></li>
+                    <li class="kwick3"></li>
+                    <li class="kwick4"></li>
+                </ul>
+            </div>
+            <h1>Verticle Arrangement</h1>
+            <div id="example3">
+                <ul id="ulkwicks3" class="kwicks" >
+                    <li class="kwick1"></li>
+                    <li class="kwick2"></li>
+                    <li class="kwick3"></li>
+                    <li class="kwick4"></li>
+                </ul>
+            </div>
+            <h1>Use Min instead of Max</h1>
+            <div id="example4">
+                <ul id="ulkwicks4" class="kwicks" >
+                    <li class="kwick1"></li>
+                    <li class="kwick2"></li>
+                    <li class="kwick3"></li>
+                    <li class="kwick4"></li>
+                </ul>
+            </div>
+            <h1>Custom Easing and Duration</h1>
+            <div id="example6">
+                <ul id="ulkwicks6" class="kwicks">
+                    <li class="kwick1"></li>
+                    <li class="kwick2"></li>
+                    <li class="kwick3"></li>
+                    <li class="kwick4"></li>
+                </ul>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+        </div>
+        <script id="tmpl_kwick" type="text/template">
+            <ul id="ulkwicks7" class="kwicks">
+                <li>
+                    <div class="kwicks_inner_inner">
+                        <div class="bigLetter">L</div>
+                        <div class="smallLetters">is for the way you look at me</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="kwicks_inner">
+                        <div class="bigLetter">O</div>
+                        <div class="smallLetters">is for the only one I see</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="kwicks_inner">
+                        <div class="bigLetter">V</div>
+                        <div class="smallLetters">is very, very extraordinary</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="kwicks_inner">
+                        <div class="bigLetter">E</div>
+                        <div class="smallLetters">is even more... I refuse to finish this...</div>
+                    </div>
+                </li>
+            </ul>
+        </script>
+		<!--brix begin-->
+        <script>
+            KISSY.ready(function(S) {
+                KISSY.use("brix/gallery/kwicks/", function(S, Kwicks) {
+                    var kwicks1 = new Kwicks({
+                        el:'#ulkwicks1',//这里可以直接指定el，也可以是tmpl
+                        max : 205,
+                        spacing : 5,
+                        autoplay:true
+                    });
+                    var kwicks2 = new Kwicks({
+                        el:'#ulkwicks2',
+                        max: 205,
+                        spacing: 5
+                    });
+                    var kwicks3 = new Kwicks({
+                        el:'#ulkwicks3',
+                        max: 205,
+                        spacing: 3,
+                        isVertical : true
+                    });
+                    var kwicks3 = new Kwicks({
+                        el:'#ulkwicks4',
+                        min: 20,
+                        spacing: 3,
+                        isVertical : true
+                    });
+                    var kwicks6 = new Kwicks({
+                        el:'#ulkwicks6',
+                        max: 320,
+                        spacing: 5,
+                        duration:0.5,
+                        easing: 'bounceOut',
+                        autoplay:true
+                    });
+                    var kwicks7 = new Kwicks({
+                        container:'#example7',
+                        tmpl:S.one('#tmpl_kwick').html(),
+                        max: 200,
+                        duration: 0.4,
+                        sticky: true,
+                        autoplay:true
+                    });
+                    kwicks7.render();
+                    /*S.later(function(){
+                        kwicks7.destroy();
+                    },5000);*/
+                    
+                });
+            });
+        </script>
+        <!--brix end-->
+    </body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>Brix Pagination Demo</title>
+        <link type="text/css" rel="stylesheet" href="../../../src/style/brix-min.css" charset="utf-8">
+        <link rel="stylesheet" href="../../../src/gallery/dropdown/index.css">
+        <link rel="stylesheet" href="../../../src/gallery/pagination/index.css">
+        <link rel="stylesheet" href="../../assets/doc.css">
+        <script src="http://a.tbcdn.cn/s/kissy/1.3.0/seed.js"></script>
+        <script src="../../../src/core/brix.js" bx-config="{autoConfig:true,autoPagelet:true,fixed:'src/'}"></script>
+    </head>
+    <body>
+        <div id="J_container" class="container">
+            <h2 class="h2">现有html结构</h2>
+            <div bx-name="pagination" class="pagination" bx-config="{defaultUI:false,sizeChange:true,jump:true,statistics:true,goTo:false}">
+                <div class="pagination-info">
+                    <span>当前</span><span class="b">1-30</span><span>条</span>
+                    <span class="mr">共</span><span class="b">42</span><span>条</span>
+                    <span class="mr">每页展现</span>
+                    <div bx-name="dropdown" class="dropdown">
+                        <span class="dropdown-hd">
+                            <span class="dropdown-text" value="3">20</span>
+                          </span>
+                        <ul class="dropdown-list">
+                            <li class="dropdown-item"><span value="1">10</span></li>
+                            <li class="dropdown-item"><span value="2">15</span></li>
+                            <li class="dropdown-item dropdown-itemselected"><span value="3">20</span></li>
+                            <li class="dropdown-item"><span value="4">30</span></li>
+                        </ul>
+                </div><span>条</span>
+                </div>
+                <div class="pagination-pages">
+                    <div class="pagination-page">
+                        <a href="" class="page-prev">
+                            <i class="iconfont">&#403</i>
+                        </a>
+                        <a class="page" href="">1</a>
+                        <span class="page-cur">2</span>
+                        <a class="page" href="">3</a>
+                        <a class="page" href="">4</a>
+                        <span class="page-split">...</span>
+                        <a class="page" href="">6</a>
+                        <a href="" class="page-next">
+                            <i class="iconfont">&#402</i>
+                        </a>
+                    </div>
+                    <div class="pagination-count">
+                        <span>共</span><span class="b">36</span><span>页</span>
+                    </div>
+                    <div class="pagination-form">
+                            <span>向第</span><input class="page-num" name="page" type="text"><span>页</span><a tabIndex=0 class="btn-jump btn btn-size25">跳转</a>
+                    </div>
+                </div>
+            </div>
+            <h2 class="h2">简易模式</h2>
+            <div bx-name="pagination" class="pagination" bx-config="{simplify:true,pageName:'pagenum',params:{xx:[45,'er']}}">
+            </div>
+
+            <h2 class="h2">简易模式显示上一页下一页的文字</h2>
+            <div bx-name="pagination" class="pagination" bx-config="{simplify:true,pageName:'pagenum',isText:true}">
+            </div>
+
+            <h2 class="h2">简易模式包含统计跳转</h2>
+            <div bx-name="pagination" class="pagination" bx-config="{simplify:true,statistics:true,sizeChange:true,jump:true,goTo:false}">
+
+            </div>
+
+            <h2 class="h2">默认模式</h2>
+            <div bx-name="pagination" class="pagination">
+            </div>
+
+            <h2 class="h2">没有记录总数</h2>
+            <div bx-name="pagination" class="pagination" bx-config="{hascount:false,jump:true}">
+            </div>
+
+            <h2 class="h2">完整模式</h2>
+            <div bx-name="pagination" class="pagination clearfix" bx-config="{statistics:true,sizeChange:true,jump:true,goTo:true,offset:0}">
+            </div>
+
+            <h2 class="h2">etao搜索模式</h2>
+            <div bx-name="pagination" class="pagination" bx-config="{mode:'s',offset:-1,pageName:'s',pageSizeName:false,jump:true,sizeChange:true,goTo:true}">
+            </div>
+            <h2 class="h2">goToUrl模式</h2>
+            <div bx-name="pagination" class="pagination" bx-config="{mode:'s', isText: true, offset:-1,index:2,pageSizeName:'size',jump:true,goTo:true,count:3600,size:36,pageName:'s',goToUrl:'/search?q=t+%D0%F4+%C4%D0+%B3%A4%D0%E4&amp;initiative_id=setao_20121217&amp;usearch=yes&amp;mt=705194#filterbar'}">
+            </div>
+
+
+            <h2 class="h2">直通车特殊需求示例</h2>
+            <div style="position:relative">
+                <div bx-name="pagination" class="pagination" bx-config="{simplify:true,statistics:true,sizeDisplay:false,sizeChange:false,jump:false,goTo:false,pageCount:false}">
+
+                </div>
+                <a style="position:absolute;right:105px;top:3px;"><<添加单前页</a>
+            </div> 
+
+        </div>
+
+         <script type="text/javascript">
+        Brix.ready(function(){
+            Brix.pagelet.ready(function(){
+                Brix.pagelet.bricks[0].brick.on('sizeChange',function(e){
+                    debugger
+                    this.setConfig({});
+                });
+            })
+            
+        });
+        </script>
+    </body>
+</html>

@@ -5,6 +5,10 @@ body{
 /*引入字体*/
 @import url(http://fonts.googleapis.com/css?family=Architects+Daughter);
 
+a{
+    cursor: pointer;
+    text-decoration: none;
+}
 /*--------代码高亮------------*/
 .highlight {
   background: #f0f0f0;
@@ -473,11 +477,14 @@ h1, h2, h3, h4, h5, h6{
 .span200 h3{
   font-size: 14px;
   color: #909090;
-  font : 14px bold 'Architects Daughter', cursive, 'Hiragino Sans GB', Helvetica, Arial;
 }
-.font-Arch{
+
+.table,
+.font-Arch,
+.span200 h3{
     font : 14px bold 'Architects Daughter', cursive, 'Hiragino Sans GB', Helvetica, Arial;
 }
+
 .bordertop{
   border-top: 1px solid #dbdbdb;
 }
@@ -506,10 +513,6 @@ h1, h2, h3, h4, h5, h6{
   border: none;
 }
 
-.table{
-  font : 14px bold 'Architects Daughter', cursive, 'Hiragino Sans GB', Helvetica, Arial;
-}
-
 .demo{
   text-align: center;
   position: relative;
@@ -533,12 +536,21 @@ h1, h2, h3, h4, h5, h6{
 
 #showcase .api{
     float: right;
-    padding-right: 20px;
+    padding-right: 4px;
     visibility: hidden;
 }
+
 .api{
   float: right;
 }
+
+#showcase td:hover{
+  background-color: #d9edf7;
+  -webkit-border-radius: 8px;
+     -moz-border-radius: 8px;
+          border-radius: 8px;
+}
+
 #showcase td:hover .api{
     visibility: visible;
 }
@@ -556,6 +568,19 @@ h1, h2, h3, h4, h5, h6{
     position: absolute;
     top: 60px;
     left: 119px;
+}
+
+#goback{
+    vertical-align: text-top;
+    position: absolute;
+    top:-35px;
+    left:0px;
+    font-size: 12px;
+    text-decoration: none;
+    display: none;
+}
+#goback:hover{
+    text-decoration: none;
 }
 /*左侧菜单栏*/
 .nav{
@@ -622,4 +647,9 @@ h1, h2, h3, h4, h5, h6{
     border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff62c462', endColorstr='#ff51a351', GradientType=0);
     filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+
+.table-space{
+    border-collapse: separate;
+    border-spacing: 12px 20px;
 }

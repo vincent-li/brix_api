@@ -27,7 +27,7 @@
             <nav class="minimal-navigation">
                 <ul>
                     <li><a href="3minutes.html">3分钟起步</a></li>
-                    <li><a href="gallery.html#!components/intro">基础组件列表</a></li>
+                    <li><a href="gallery.html#!gallery/intro">基础组件列表</a></li>
                     <li><a href="definitiveguide.html#!guide/prep">brix权威指南</a></li>
                     <li><a href="definitiveguide.html#!">brix组件管理规范</a></li>
                 </ul>
@@ -53,7 +53,7 @@
                 <p>首先请确保以下资源在你的页面有所引用</p>
                 <form class="bs-docs-example" style="padding-left:66px;">
                     <p>&lt;script type="text/javascript" src="http://a.tbcdn.cn/s/kissy/1.3.0/kissy-min.js"&gt;&lt;/script&gt;</p>  
-                    <p>&lt;script src="http://a.tbcdn.cn/apps/e/brix/1.0/brix-min.js" bx-config="{autoConfig:true,componentsPath:'./',importsPath:'./'}"&gt;&lt;/script&gt;
+                    <p>&lt;script type="text/javascript" src="http://a.tbcdn.cn/apps/e/brix/2.0/brix-min.js"&gt;&lt;/script&gt;
                     </p>                           
                 </form>
                 <p>资源引入完成之后，我们先引入一段模板。</P>         
@@ -104,8 +104,8 @@
                 <p>这种写法好像比较难以理解。主要是很多人在此看到Pagelet这个对象难以理解。那么我们来打个比喻。你可以把Pagelet看成是一个工匠，由brix提供给你，然后它可以根据你指定的tmpl找到这个元素，然后根据bx-name指定的名称帮组装你需要的组件。下面是整个页面代码</P>
 <pre>
 <code>
-    &lt;script type="text/javascript" src="http://a.tbcdn.cn/s/kissy/1.3.0/kissy-min.js"&gt;&lt;/script&gt;
-    &lt;script src="http://a.tbcdn.cn/apps/e/brix/1.0/brix-min.js" bx-config="{autoConfig:true,componentsPath:'./',importsPath:'./'}"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript"  src="http://a.tbcdn.cn/s/kissy/1.3.0/kissy-min.js"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript" src="http://a.tbcdn.cn/apps/e/brix/2.0/brix-min.js"&gt;&lt;/script&gt;
     &lt;script type="text/tmpl" id="timer_tmpl"&gt;
         &lt;span class="timer-title">距离你看完还剩：&lt;/span&gt;
         {{#m}}

@@ -67,13 +67,14 @@
             <nav class="minimal-navigation">
                 <ul>
                     <li><a href="/3minutes.html">3分钟起步</a></li>
-                    <li><a href="/gallery.html">基础组件列表</a></li>
-                    <li><a href="/definitiveguide.html">brix权威指南</a></li>
-                    <li><a href="/tags.html">brix组件管理规范</a></li>
+                    <li><a href="/gallery.html#!components/intro">基础组件列表</a></li>
+                    <li><a href="/definitiveguide.html#!guide/prep">brix权威指南</a></li>
+                    <li><a href="/definitiveguide.html#!">brix组件管理规范</a></li>
                 </ul>
             </nav>
         </header>
-        <div class="content" id="content_guide">
+        <div class="content">
+            <div id="content_guide" class="page"></div>
         </div>
     </body>
     <script type="text/javascript">
@@ -82,7 +83,7 @@
                 tmpl: '#menutree',
                 eltag: 'a',//挂载时间的元素tag
                 place: '#content_guide',
-                basepath : '/views/',//配合hash值使用，记载资源
+                basepath : 'views/',//配合hash值使用，记载资源
                 mod: 'M'//--S==>显示替换 --M==>实现菜单功能
             });
         });

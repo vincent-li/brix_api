@@ -58,8 +58,11 @@ KISSY.add("components/showcase/index", function(S, Brick, Pagelet) {
                             self.pagelet = new Pagelet({
                                  tmpl: '#'+S.one(el).attr('id')
                             });
+                            if(typeof hljs !== 'undefined' && hljs){
+                                hljs.initHighlighting();
+                            }
                             if(cb){
-                                cb.call();
+                                cb();
                             }
                         }
                     }
@@ -79,9 +82,6 @@ KISSY.add("components/showcase/index", function(S, Brick, Pagelet) {
                         n.on('click',function(e){
                             e.halt();
                             self._renderUI(path,function(){
-                                if(hljs){
-                                    hljs.initHighlighting();
-                                }
                                 if(self.get('transition')){
                                     self.pagelet.ready(function(){
                                         self._transition(n,self.get('el'),el);

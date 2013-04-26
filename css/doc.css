@@ -597,7 +597,7 @@ h1, h2, h3, h4, h5, h6{
     padding-right: 10px;
 }
 
-#page{
+.page{
     max-width: 740px;
     left: 280px;
     position: relative;

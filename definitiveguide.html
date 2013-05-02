@@ -19,7 +19,7 @@
     <body>
         <div class="nav">
             <div class="top"></div>
-            <div class="down" id="menutree">
+            <div class="down" id="guide-menutree">
                 <div><h5>Brix权威指南</h5></div>
                 <ul class="entries">
                     <li><a href="#!guide/prep">Brix前瞻</a></li>
@@ -80,7 +80,7 @@
     <script type="text/javascript">
         KISSY.use('components/showcase/',function(S,ShowCase){
             var showcase = new ShowCase({
-                tmpl: '#menutree',
+                tmpl: '#guide-menutree',
                 eltag: 'a',//挂载时间的元素tag
                 place: '#content_guide',
                 basepath : 'views/',//配合hash值使用，记载资源

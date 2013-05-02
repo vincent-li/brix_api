@@ -64,16 +64,16 @@
         &lt;span class="timer-title">距离你看完还剩：&lt;/span&gt;
         {{#m}}
             &lt;span bx-tmpl="m" bx-datakey="m" class="timer-mins timer-num"&gt;
-                &lt;!--bx-tmpl="m" bx-datakey="m"--&gt;{{m}}&lt;!--bx-tmpl="m"--&gt;
+                {{m}}
             &lt;/span&gt;分
         {{/m}}
         {{#s}}
             &lt;span bx-tmpl="s" bx-datakey="s" class="timer-secs timer-num"&gt;
-                &lt;!--bx-tmpl="s" bx-datakey="s"--&gt;{{s}}&lt;!--bx-tmpl="s"--&gt;
+                {{s}}
             &lt;/span&gt;
             {{#hs}}
                 .&lt;span bx-tmpl="hs" bx-datakey="hs" class="timer-hsecs timer-num"&gt;
-                    &lt;!--bx-tmpl="hs" bx-datakey="hs"--&gt;{{hs}}&lt;!--bx-tmpl="hs"--&gt;
+                    {{hs}}
                 &lt;/span&gt;
             {{/hs}}秒
         {{/s}}
@@ -110,21 +110,21 @@
         &lt;span class="timer-title">距离你看完还剩：&lt;/span&gt;
         {{#m}}
             &lt;span bx-tmpl="m" bx-datakey="m" class="timer-mins timer-num"&gt;
-                &lt;!--bx-tmpl="m" bx-datakey="m"--&gt;{{m}}&lt;!--bx-tmpl="m"--&gt;
+                {{m}}
             &lt;/span&gt;分
         {{/m}}
         {{#s}}
             &lt;span bx-tmpl="s" bx-datakey="s" class="timer-secs timer-num"&gt;
-                &lt;!--bx-tmpl="s" bx-datakey="s"--&gt;{{s}}&lt;!--bx-tmpl="s"--&gt;
+                {{s}}
             &lt;/span&gt;
             {{#hs}}
                 .&lt;span bx-tmpl="hs" bx-datakey="hs" class="timer-hsecs timer-num"&gt;
-                    &lt;!--bx-tmpl="hs" bx-datakey="hs"--&gt;{{hs}}&lt;!--bx-tmpl="hs"--&gt;
+                    {{hs}}
                 &lt;/span&gt;
             {{/hs}}秒
         {{/s}}
     &lt;/script&gt;
-
+    
     &lt;div id="timercase" bx-name="timer" class="timer" bx-config="{tmpl:'#timer_tmpl',updateTime:180000,units:'m',interval:100}" style="font-size: 22px;padding: 20px 0;"&gt;&lt;/div&gt;
 
     &lt;script&gt;

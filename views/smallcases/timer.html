@@ -1,13 +1,13 @@
 <script type="text/tmpl" id="timer_tmpl">
     <span class="timer-title">距离你看完还剩：</span>
     {{#m}}
-        <span bx-tmpl="m" bx-datakey="m" class="timer-mins timer-num"><!--bx-tmpl="m" bx-datakey="m"-->{{m}}<!--bx-tmpl="m"-->
+        <span bx-tmpl="m" bx-datakey="m" class="timer-mins timer-num">{{m}}
         </span>分
     {{/m}}
     {{#s}}
-        <span bx-tmpl="s" bx-datakey="s" class="timer-secs timer-num"><!--bx-tmpl="s" bx-datakey="s"-->{{s}}<!--bx-tmpl="s"-->
+        <span bx-tmpl="s" bx-datakey="s" class="timer-secs timer-num">{{s}}
         </span>
-        {{#hs}}.<span bx-tmpl="hs" bx-datakey="hs" class="timer-hsecs timer-num"><!--bx-tmpl="hs" bx-datakey="hs"-->{{hs}}<!--bx-tmpl="hs"--></span>
+        {{#hs}}.<span bx-tmpl="hs" bx-datakey="hs" class="timer-hsecs timer-num">{{hs}}
         {{/hs}}秒
     {{/s}}
 </script>

@@ -38,6 +38,7 @@ KISSY.add("components/showcase/index", function(S, Brick, Pagelet) {
             var self = this;
             self.pagelet = null;
             var mod = self.get('mod');
+            window.GALLERY = [];
             if(!mod){
                 self._renderUI(self.get('path'));
             }else if(mod==='S'){
@@ -48,6 +49,7 @@ KISSY.add("components/showcase/index", function(S, Brick, Pagelet) {
         },
         _renderUI : function(path,cb){
             var self = this;
+            self._destroy();
             if(path){
                 S.ajax({
                     url : path,
@@ -58,12 +60,22 @@ KISSY.add("components/showcase/index", function(S, Brick, Pagelet) {
                         el = (el && typeof el === 'string') ? S.one(el) : self.get('el');
                         if(el){
                             el.html('');
+                            var script = '';
+                            if(data.indexOf('<script type="text/javascript">') > -1){
+                                script = data.split('<script type="text/javascript">')[1];
+                                script = script.split('</script>')[0];
+                            }
                             el.html(data);
+                            var pid = S.one(el).attr('id');
                             self.pagelet = new Pagelet({
-                                 tmpl: '#'+S.one(el).attr('id')
+                                 tmpl: '#'+pid
                             });
                             if(typeof hljs !== 'undefined' && hljs){
                                 hljs.initHighlighting();
+                            }
+                            if(script){
+                                var F = new Function(script);
+                                F.call();
                             }
                             if(cb){
                                 cb();
@@ -102,8 +114,18 @@ KISSY.add("components/showcase/index", function(S, Brick, Pagelet) {
                 gb.detach('click');
                 gb.on('click',function(e){
                     e.halt();
+                    self._destroy();
                     self._transitionback(gb,S.one(self.get('el')),S.one(self.get('place')));
                 });
+            }
+        },
+        //销毁页面控件。
+        _destroy : function(){
+            if(window.GALLERY && window.GALLERY.length){
+                for (var i = GALLERY.length - 1; i >= 0; i--) {
+                    var c = GALLERY[i];
+                    c.destroy();
+                };
             }
         },
         // 切换2个div，t--点击的元素 l--展示组件列表的div c--是组件展示div
@@ -117,37 +139,44 @@ KISSY.add("components/showcase/index", function(S, Brick, Pagelet) {
             l.parent().append(clonet);
             clonet = S.one(clonet);
             clonet.addClass('font-Arch');
-            clonet.html(t.html());
+            clonet.html(t.html()+'<a href="'+t.next('a').attr('href')+'" class="api">API</a>');
             clonet.css({
                 position:'absolute',
                 top:'-37px',
-                left:'35px',
+                left:'45px',
                 'z-index': 3,
                 width: '150px'
             });
-            S.one(self.get('place')).show();
             var anim = S.Anim(l,{
                     'opacity': '0'
                 },0.6,transmode,function(){
                     l.hide();
+                    anim2.run();
                 }
             );
+            var place = S.one(self.get('place'));
+            place.show();
+            var anim2 = S.Anim(place,{
+                'opacity': '1'
+            },0.6,'easeIn',function(){
+                place.show();
+            });
             anim.run();
         },
         _transitionback : function(n,l,c){
             var temp = S.one('#clonecomp');
             if(temp) temp.remove();
             n.hide();
-            l.show();
             var anim0 = S.Anim(c,{
                 'left' :  '1000px'
             },0.6,'easeOut',function(){
                 c.html('');
                 c.hide();
                 c.css('left','0px');
+                c.css('opacity','0');
             });
             var anim = S.Anim(l,{
-                    'opacity': '1'
+                'opacity': '1'
             },0.8,'easeIn',function(){
                 l.show();
             });

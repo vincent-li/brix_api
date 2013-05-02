@@ -1,0 +1,32 @@
+<div style="padding-top:60px;">
+    <div id="pagination" class="pagination clearfix"></div>
+</div>
+<script type="text/javascript">
+    KISSY.ready(function(S){
+        var count = 50;
+        var pageIndex = 1;
+        var pageSize = 10;
+        S.use('brix/gallery/pagination/,brix/gallery/dropdown/index-min.css,brix/gallery/pagination/index-min.css',function(S,Pagination){
+            //分页组建
+            var pn = new Pagination({
+                el : S.one('#pagination'),
+                statistics: true,//
+                sizeChange:true,//
+                goTo:false,//
+                sizeChange : true,
+                jump : true,
+                pageName : 'pagenumber',
+                size: pageSize,//一页的条数
+                count: count,//总数据条数
+                index: pageIndex//当前页码。
+            });
+            pn.on('gotoPage',function(ev){
+                alert('您试图查看第'+ev.index+'页的内容!');
+            });
+            pn.on('sizeChange',function(ev){
+                alert('您希望每页显示'+ev.size+'条数据!');
+            });
+            window.GALLERY.push(pn);
+        });
+    });
+</script>

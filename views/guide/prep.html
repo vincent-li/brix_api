@@ -119,6 +119,32 @@ gallery : {
 }
 </code></pre>
     <p><code>debug</code>,当这个值为true时，brix会下载未压缩的版本，也就是index.js,不标识或者为fasle时，brix会下载index-min.js。至于为啥叫index，index-min，只是一种约定，遵守即可。</p>
+    <h4>Mustache及其扩展初解</h4>
+    <p>在3分钟起步的教程中，很多同学看到了一些模版的写法，可能会有些疑惑。我们在这里提前解释下模版的用法，并不深入，足够应付大家看懂以后遇到的模版。</p>
+<pre>
+<code>
+    &lt;script type="text/tmpl" id="timer_tmpl"&gt;
+        &lt;span class="timer-title">距离你看完还剩：&lt;/span&gt;
+        {{#m}}
+            &lt;span bx-tmpl="m" bx-datakey="m" class="timer-mins timer-num"&gt;
+                {{m}}
+            &lt;/span&gt;分
+        {{/m}}
+        {{#s}}
+            &lt;span bx-tmpl="s" bx-datakey="s" class="timer-secs timer-num"&gt;
+                {{s}}
+            &lt;/span&gt;
+            {{#hs}}
+                .&lt;span bx-tmpl="hs" bx-datakey="hs" class="timer-hsecs timer-num"&gt;
+                    {{hs}}
+                &lt;/span&gt;
+            {{/hs}}秒
+        {{/s}}
+    &lt;/script&gt;
+</code>
+</pre>
+    <p>上面的是一个模版。模版元素可以使用dom元素，也可以使用<code>&lt;script type="text/tmpl" id="timer_tmpl"&gt;&lt;/script&gt;</code>的方式承载。这个看大家具体页面的设置。如果说页面已经使用Mustache或者有可能和Mustache符号冲突的组件，那么建议模版写在<code>&lt;script&gt;&lt;/script&gt;</code>内。</p>
+    <p><code>{{#}}{{/}}</code>这种符号是成对出现，一种闭合的判断公式。<code>{{#m}}{{/m}}</code>等同于<code>if(m){}</code>,是判断m是否存在。<code>{{m}}</code>是直接把m值输出。至于有同学问m是什么，我们能不能操作。其实m就是模版数据对象的一个属性。我们提供api可以让用户自己set模版数据并自动刷新结果。请参考<a href="">setChunkData</a>。假设我们组件实例化后<code>var timer = new Timer({});</code>,我们可以这么用实例对象<code>timer.setChunkData('m','123')</code>,brix会把模版根据新的数据重新渲染。在页面上看到出现在源码中{{m}}的地方被<code>'123'</code>代替了。当然了，我们也可以使用<code>bx-config:{data:''}</code>或者new的时候使用属性<code>{data:''}</code>的方式指定默认值。如果对Mustache模版更感兴趣，请参考<a href="" target="_blank">Mustache模版</a>引擎</a>。我们也会对<a>模版渲染</a>做详细的讲解。</p>
     </section>
     </article>
 </div>

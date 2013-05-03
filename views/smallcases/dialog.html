@@ -1,0 +1,155 @@
+<div>
+    <a href="javascript:;" id="btnShowleft" class="btn">显示左</a>
+
+    <a href="javascript:;" id="btnShowright" class="btn">显示右</a>
+
+    <a href="javascript:;" id="btnShowup" class="btn">显示上</a>
+
+    <a href="javascript:;" id="btnShowdown" class="btn">显示下</a>
+
+    <a href="javascript:;" id="btnShow" class="btn">显示</a>
+
+    <a href="javascript:;" id="btnHide" class="btn">隐藏</a>
+</div>
+<!--brix begin-->
+<script type="text/template" id="tmpl">
+    <div style="margin-top:-10px">
+    <h2 class="h2" style="margin:0">标题</h2>
+    <p>这里你想写什么写什么，可以是一段文字，也可以是html元素。</p>
+    <div style="margin-top:15px"><a class="btn">确定</a></div>
+    </div>
+</script>
+<script type="text/javascript">
+    KISSY.ready(function(S) {
+        KISSY.use("brix/gallery/dialog/,brix/gallery/dialog/index-min.css", function(S, Dialog) {
+            var DOM = S.DOM
+            var _l,_t,_r,_b;
+            var _p = S.one("#place").parent();
+            _l = _p.offset().left;
+            _t = _p.offset().top+30;
+            _lc = _l+(_p.width()-300)/2; 
+            _r = _l + _p.width();
+            _b = _t + _p.height();
+            var config = {
+                tmpl:S.one("#tmpl").html(),
+                start:{
+                    left:1000,
+                    top:100,
+                    opacity:0
+                },
+                end:{
+                    left:100,
+                    top:100,
+                    opacity:1
+                },
+                width:300
+            }
+            var dialog = new Dialog(config);
+
+            var config1 = {
+                tmpl:S.one("#tmpl").html(),
+                align:{
+                    node:false,
+                    points:['cc','cc'],
+                    offset:[0,0]
+                },
+                elStyle:{
+                     position: S.UA.ie == 6 ? "absolute" : "fixed"
+                },
+                width:300,
+                mask:true,
+                zIndex : 99,
+                x : _lc
+            }
+            var dialog1 = new Dialog(config1);
+
+            //dialog.on('hide',function(){console.log('hide')});
+            //dialog.on('show',function(){console.log('show')});
+
+            S.one('#btnHide').on('click',function(e){
+                e.halt();
+                dialog.hide();
+            });
+
+            S.one('#btnShowleft').on('click',function(e){
+                e.halt();
+                dialog.hide();
+                dialog.set('start',{
+                    left:_l-300,
+                    top:_t,
+                    opacity:0
+                });
+                dialog.set('end',{
+                    left:_l,
+                    top:_t,
+                    opacity:1
+                });
+                dialog.show();
+            });
+
+            S.one('#btnShowright').on('click',function(e){
+                e.halt();
+                dialog.hide();
+                dialog.set('start',{
+                    left:_r,
+                    top:_t,
+                    opacity:0
+                });
+
+                dialog.set('end',{
+                    left:_r-300,
+                    top:_t,
+                    opacity:1
+                });
+                dialog.show();
+            });
+
+            S.one('#btnShowup').on('click',function(e){
+                e.halt();
+                dialog.hide();
+                dialog.set('start',{
+                    left:_lc,
+                    top:_b,
+                    opacity:0
+                });
+
+                dialog.set('end',{
+                    left:_lc,
+                    top:_b-167,
+                    opacity:1
+                });
+                dialog.show();
+            });
+
+            S.one('#btnShowdown').on('click',function(e){
+                e.halt();
+                dialog.hide();
+                dialog.set('start',{
+                    left:_lc,
+                    top:_t-167,
+                    opacity:0
+                });
+
+                dialog.set('end',{
+                    left:_lc,
+                    top:_t,
+                    opacity:1
+                });
+                dialog.show();
+            });
+
+            S.one('#btnShow').on('click',function(e){
+                e.halt();
+                dialog.hide();
+                dialog1.center(); 
+                dialog1.show();
+                
+                /*dialog.on('show',function(){
+                    debugger;
+                   
+               });*/
+                
+            });
+        });
+    });
+</script>

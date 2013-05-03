@@ -144,8 +144,8 @@ KISSY.add("components/showcase/index", function(S, Brick, Pagelet) {
                 position:'absolute',
                 top:'-37px',
                 left:'45px',
-                'z-index': 3,
-                width: '150px'
+                'z-index': 0,
+                width: '180px'
             });
             var anim = S.Anim(l,{
                     'opacity': '0'

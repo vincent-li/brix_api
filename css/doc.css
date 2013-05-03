@@ -814,8 +814,7 @@ padding-left: 14px;
 
 div.page{
     max-width: 740px;
-    left: 280px;
-    position: relative;
+    margin-left: 280px;
 }
 
 .nav > .down li a {
@@ -871,4 +870,10 @@ ol,ul{
 /*尺寸*/
 .w185{
     width: 185px;
+}
+
+.ks-overlay {
+    position:absolute;
+    left:-9999px;
+    top:-9999px;
 }

@@ -1,0 +1,60 @@
+
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>加载 Loading</title>
+
+        <!-- brix资源文件 -->
+        <script type="text/javascript" src="http://a.tbcdn.cn/s/kissy/1.3.0/kissy-min.js"></script>
+        <script src="http://a.tbcdn.cn/apps/e/brix/2.0/brix-min.js" bx-config="{autoConfig:true,componentsPath:'./',importsPath:'./'}"></script>
+        <link rel="stylesheet" href="http://a.tbcdn.cn/apps/e/brix/2.0/brix-min.css">
+        <!-- doc.css文档自用css -->
+        <link rel="stylesheet" href="/css/demo.css" type="text/css">
+        <style type="text/css">
+            .section {width:990px;margin:0 auto;margin-top:15px;}
+            .section p em{padding-left:15px;}
+            .loading-desc{color:#ddd;line-height:18px;vertical-align: top}
+            .hidden{display: none}
+        </style>
+    </head>
+    <body>
+        <div id="J_container" class="container" style="padding-left:50px;">
+            <div class="section">
+                <p>
+                    <strong>1、loading默认有四种动画形式：</strong>
+                </p>
+            </div>
+            <div class="section">
+                <p>a、<em>淘宝版本1</em></p>
+                <span class="loading loading-color"></span>
+                <p>b、<em>淘宝版本2</em></p>
+                <span class="loading loading-color-mini"></span>
+                <p>c、<em>轻型版本1</em></p>
+                <span class="loading loading-grey-border"></span>
+                <p>d、<em>轻型版本2</em></p>
+                <span class="loading loading-grey"></span>
+            </div>
+            <div class="section">
+                <p>
+                    <strong>2、loading配合文字使用：</strong>
+                </p>
+                <span class="loading loading-color-mini"></span>
+                <span>加载中...</span>
+            </div>
+        </div>
+        <script>
+            KISSY.ready(function(S) {
+                KISSY.use("brix/core/pagelet,brix/gallery/loading/index.css", function(S, Pagelet) {
+                    var config = {
+                        tmpl:'#J_container'
+                    }
+                    var p = new Pagelet(config);
+                    p.addBehavior();
+                
+                });
+            });
+        </script>
+        <!--brix end-->
+    </body>
+</html>

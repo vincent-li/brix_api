@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
     <head>
         <meta charset='utf-8' />
@@ -8,7 +7,7 @@
         
         <!-- brix资源文件 -->
         <script type="text/javascript" src="http://a.tbcdn.cn/s/kissy/1.3.0/kissy-min.js"></script>
-        <script src="http://a.tbcdn.cn/apps/e/brix/2.0/brix-min.js" bx-config="{debug:true,autoConfig:true,componentsPath:'./',importsPath:'./'}"></script>
+        <script src="http://a.tbcdn.cn/apps/e/brix/2.0/brix-min.js" bx-config="{autoConfig:true,componentsPath:'./',importsPath:'./'}"></script>
         <!-- 代码高亮 -->
         <link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/default.min.css">
         <script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
@@ -18,7 +17,7 @@
         
     </head>
     <body>
-       <header class="page-header">
+       <header class="page-header plr93">
             <div class="logo">
                 <a class="brand" href="index.html">
                     <img src="images/logo.png">
@@ -39,14 +38,9 @@
                 <p class="w600">本文旨在让大家学习到怎么快速使用brix组件。同时让每个人体验下基于约定的开发的便捷。只要会使用一个组件那么剩下的组件都将是按照同样的引用方法引用。只是具体的参数需要根据具体组件去设置。我们将使用计时器作为demo介绍brix的具体使用方法。</p>
             </div>
             <section class="mt20">
-                <header class="center-text">
-                    <h5>demo</h5>
-                </header>
                 <div id="demoplace" class="demo">
+
                 </div>
-                <header class="center-text">
-                    <h5>demo</h5>
-                </header>
             </section>
             <section class="mt20">
                 <p>来看看怎么去引用这个简单的计时组件</p>
@@ -143,12 +137,6 @@
         </div>
     </body>
     <script type="text/javascript">
-        KISSY.use('components/showcase/',function(S,ShowCase){
-            var showcase = new ShowCase({
-                tmpl: '#demoplace',
-                path: 'views/smallcases/timer.html'//需要加载的页面path，相对路径
-            });
-        });
         hljs.initHighlighting();
     </script>
 </html>

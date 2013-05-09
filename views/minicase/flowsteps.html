@@ -1,0 +1,39 @@
+<!DOCTYPE>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>步骤条</title>
+    <!--[if lt IE 9]> <script src="demo/assets/html5.js"></script> <![endif]-->
+    
+   
+    <!-- brix资源文件 -->
+    <script type="text/javascript" src="http://a.tbcdn.cn/s/kissy/1.3.0/kissy-min.js"></script>
+    <script src="http://a.tbcdn.cn/apps/e/brix/2.0/brix-min.js" bx-config="{autoConfig:true,componentsPath:'./',importsPath:'./'}"></script>
+    <link rel="stylesheet" href="http://a.tbcdn.cn/apps/e/brix/2.0/brix-min.css">
+
+    <link rel="stylesheet" type="text/css" href="http://a.tbcdn.cn/apps/e/brix/2.0/gallery/flowsteps/index.css">
+    <!-- doc.css文档自用css -->
+    <link rel="stylesheet" href="/css/demo.css" type="text/css">
+</head>
+<body>
+    <div class="container">
+        <p><h4 class="h4">方式一</h4></p>
+        <div bx-name="flowsteps" class="flowsteps">
+            <ol class="clearfix">
+                <li class="fs-item fs-item-done"><b>1</b>选择宝贝</li>
+                <li class="fs-item fs-item-current"><b>2</b>编辑推广内容并设置</li>
+                <li class="fs-item"><b>3</b>完成</li>
+            </ol>
+        </div>
+        <p><h4 class="h4">方式二</h4></p>
+        <div class="flowsteps-small">
+            <ol class="clearfix">
+                <li class="fs-item fs-item-done"><i></i><b></b><span>提交订单</span></li>
+                <li class="fs-item fs-item-done fs-item-current"><i></i><b></b><span>商品出库</span></li>
+                <li class="fs-item fs-item-done"><i></i><b></b><span>等待收货</span></li>
+                <li class="fs-item fs-item-done"><i></i><span>完成</span></li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>

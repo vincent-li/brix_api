@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8' />
+        <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+        <meta name="description" content="smallcase:calendar" />
+        <title>brix_api</title>
+        
+        <!-- brix资源文件 -->
+        <script type="text/javascript" src="http://a.tbcdn.cn/s/kissy/1.3.0/kissy-min.js"></script>
+        <script src="http://a.tbcdn.cn/apps/e/brix/2.0/brix-min.js" bx-config="{autoConfig:true,componentsPath:'./',importsPath:'./'}"></script>
+        <link rel="stylesheet" href="http://a.tbcdn.cn/apps/e/brix/2.0/brix-min.css">
+        <!-- doc.css文档自用css -->
+        <link rel="stylesheet" href="/css/demo.css" type="text/css">
+    </head>
+    <body class="fbody">
+        <div class="container">
+            <div style="width:200px;text-align:left;" class="dropdown" id="dropdown">
+                <span class="dropdown-hd dropdown-hd-active">
+                    <span class="dropdown-text" value="3">计划列表3</span>
+                </span>
+                <ul class="dropdown-list" style="height:120px">
+                    <li class="dropdown-item"><span value="1">计划列表</span><i class="iconfont icon-ok">&#126</i></li>
+                    <li class="dropdown-item"><span value="2">计划列表2</span><i class="iconfont icon-ok">&#126</i></li>
+                    <li class="dropdown-item dropdown-itemselected "><span value="3">计划列表3</span><i class="iconfont icon-ok">&#126</i></li>
+                    <li class="dropdown-item"><span value="4">计划列表4</span><i class="iconfont icon-ok">&#126</i></li>
+                    <li class="dropdown-item"><span value="2">计划列表2</span><i class="iconfont icon-ok">&#126</i></li>
+                    <li class="dropdown-item"><span value="3">计划列表3</span><i class="iconfont icon-ok">&#126</i></li>
+                    <li class="dropdown-item"><span value="4">计划列表4</span><i class="iconfont icon-ok">&#126</i></li>
+                    <li class="dropdown-item"><span value="2">计划列表2</span><i class="iconfont icon-ok">&#126</i></li>
+                    <li class="dropdown-item"><span value="3">计划列表3</span><i class="iconfont icon-ok">&#126</i></li>
+                    <li class="dropdown-item"><span value="4">计划列表4</span><i class="iconfont icon-ok">&#126</i></li>
+                </ul>
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript">
+        KISSY.ready(function(S){
+            S.use('brix/gallery/dropdown/,brix/gallery/dropdown/index.css', function(S, Dropdown){
+                var d = new Dropdown({tmpl:'#dropdown'});
+                d.on('selected',function(e){
+                    alert("您选择了==>>" + e.value);
+                });
+            });
+        });
+    </script>
+</html>

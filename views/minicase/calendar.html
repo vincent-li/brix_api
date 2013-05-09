@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8' />
+        <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+        <meta name="description" content="smallcase:calendar" />
+        <title>brix_api</title>
+        
+        <!-- brix资源文件 -->
+        <script type="text/javascript" src="http://a.tbcdn.cn/s/kissy/1.3.0/kissy-min.js"></script>
+        <script src="http://a.tbcdn.cn/apps/e/brix/2.0/brix-min.js" bx-config="{autoConfig:true,componentsPath:'./',importsPath:'./'}"></script>
+        <link rel="stylesheet" href="http://a.tbcdn.cn/apps/e/brix/2.0/brix-min.css">
+        <!-- doc.css文档自用css -->
+        <link rel="stylesheet" href="/css/demo.css" type="text/css">
+    </head>
+    <body class="fbody">
+        <div class="container">
+            <input id="J_PopupAlign" type="text" placeholder="点这里，点这里" class="w185"/>
+        </div>
+        
+    </body>
+    <script type="text/javascript">   
+    KISSY.ready(function(S){
+        KISSY.use('brix/gallery/calendar/,brix/gallery/calendar/index.css', function(S, Calendar){
+            var S_Date = Calendar.Date;
+            var temp = new Calendar( {
+                trigger:'#J_PopupAlign',
+                align:{
+                    points:['bl','tl'],
+                    offset:[0,0]
+                },
+                popup:true,
+                triggerType:['click'],
+                closable:true
+            }).on('select', function(e) {
+                S.one('#J_PopupAlign').val(S_Date.format(e.date, 'localFullDate'));
+            });
+        });
+    });
+    </script>
+</html>

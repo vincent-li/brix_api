@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8' />
+        <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+        <meta name="description" content="smallcase:calendar" />
+        <title>brix_api</title>
+        
+        <!-- brix资源文件 -->
+        <script type="text/javascript" src="http://a.tbcdn.cn/s/kissy/1.3.0/kissy-min.js"></script>
+        <script src="http://a.tbcdn.cn/apps/e/brix/2.0/brix-min.js" bx-config="{autoConfig:true,componentsPath:'./',importsPath:'./'}"></script>
+        <link rel="stylesheet" href="http://a.tbcdn.cn/apps/e/brix/2.0/brix-min.css">
+
+        <!-- 组件依赖样式 -->
+        <link rel="stylesheet" href="/components/lavalamp/lavalamp.css" type="text/css">
+        <!-- doc.css文档自用css -->
+        <link rel="stylesheet" href="/css/demo.css" type="text/css">
+    </head>
+    <body class="fbody">
+        <div class="container">
+            <div class="first"> 
+                <ul id="firstlavalamp" bx-name="lavalamp" bx-config="{fx: 'easeNone',speed: 0.2}" class="med-lavaLamp"> 
+                    <li class="current"><a href="javascript:;">首页</a></li> 
+                    <li><a href="javascript:;">分类</a></li> 
+                    <li><a href="javascript:;">按月存档</a></li> 
+                    <li><a href="javascript:;">KeyApril Blog | Kissy.com</a></li> 
+                </ul> 
+            </div>
+
+            <div class="second"> 
+                <ul bx-name="lavalamp" bx-config="{triggered:'click',speed: 0.4}" class="med-lavaLamp2"> 
+                    <li class="current"><a href="javascript:;">首页</a></li> 
+                    <li><a href="javascript:;">分类</a></li> 
+                    <li><a href="javascript:;">按月存档</a></li> 
+                    <li><a href="javascript:;">KeyApril Blog | Kissy.com</a></li> 
+                </ul> 
+            </div>
+        </div>
+    </body>
+</html>

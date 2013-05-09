@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8' />
+        <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+        <meta name="description" content="smallcase:calendar" />
+        <title>brix_api</title>
+        
+        <!-- brix资源文件 -->
+        <script type="text/javascript" src="http://a.tbcdn.cn/s/kissy/1.3.0/kissy-min.js"></script>
+        <script src="http://a.tbcdn.cn/apps/e/brix/2.0/brix-min.js" bx-config="{autoConfig:true,componentsPath:'./',importsPath:'./'}"></script>
+        <link rel="stylesheet" href="http://a.tbcdn.cn/apps/e/brix/2.0/brix-min.css">
+        <!-- doc.css文档自用css -->
+        <link rel="stylesheet" href="/css/demo.css" type="text/css">
+    </head>
+    <body class="fbody">
+        <div class="container">
+            <a id="test1" class="btn">点击调出选色面板</a>
+        </div>
+        <script>
+            KISSY.ready(function(S) {
+                KISSY.use("brix/gallery/colorpicker/,brix/gallery/colorpicker/index.css", function(S, ColorPicker) {
+                    var colorpicker= new ColorPicker({
+                        trigger:'#test1',
+                        align:{
+                            node: '#test1',
+                            points: ['bl', 'tl'],
+                            offset: [0, 0]
+                        }
+                    });
+                    colorpicker.on('selected',function(e){
+                        S.one('#test1').html('您选择的颜色值：'+e.hex);
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

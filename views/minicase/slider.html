@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset='utf-8' />
+        <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+        <meta name="description" content="smallcase:calendar" />
+        <title>brix_api</title>
+        
+        <!-- brix资源文件 -->
+        <script type="text/javascript" src="http://a.tbcdn.cn/s/kissy/1.3.0/kissy-min.js"></script>
+        <script src="http://a.tbcdn.cn/apps/e/brix/2.0/brix-min.js" bx-config="{autoConfig:true,componentsPath:'./',importsPath:'./'}"></script>
+        <link rel="stylesheet" href="http://a.tbcdn.cn/apps/e/brix/2.0/brix-min.css">
+        <!-- doc.css文档自用css -->
+        <link rel="stylesheet" href="/css/demo.css" type="text/css">
+        <style type="text/css">
+            html,body{
+                background: #FFF;
+            }
+        </style>
+    </head>
+    <body class="fbody">
+        <div id="J_container" class="container">
+            <h3 class="h3">slider1</h3>
+            <div class="slider-container slider-container-left clearfix" style="padding:0 20px;">
+                <span class="slider-desc">缩放</span>
+                <span class="slider-start">0%</span>
+                <div id="slider1" bx-name="slider" bx-config='{current: 20, startStep: 0 }' class="slider clearfix">
+                    <span class="slider-bar"></span>
+                    <span class="slider-knob"></span>
+                </div>
+                <span class="slider-end">100%</span>
+
+                <span style="float:left;margin-left:50px;" id="slider1_txt"></span>
+            </div>
+            <p class="p">普通滑块 0~100， 当前值 current:20</p>
+            <br> <br>
+            
+            <h3 class="h3">slider2</h3>
+            <div  class="slider-container clearfix" style="padding:0 20px;">
+                <div class="slider-scale">
+                    <span class="slider-scale-dot"><span>0</span></span>
+                    <span class="slider-scale-dot" style="margin-left:12.5%"></span>
+                    <span class="slider-scale-dot" style="margin-left:12.5%"><span>50</span></span>
+                    <span class="slider-scale-dot" style="margin-left:12.5%"></span>
+                    <span class="slider-scale-dot" style="margin-left:12.5%"><span>100</span></span>
+                    <span class="slider-scale-dot" style="margin-left:12.5%"></span>
+                    <span class="slider-scale-dot" style="margin-left:12.5%"><span>150</span></span>
+                    <span class="slider-scale-dot" style="margin-left:12.5%"></span>
+                    <span class="slider-scale-dot" style="margin-left:12.4%; *margin-left:12%;"><span>200</span></span>
+                </div>
+                <div id="slider3" bx-name="slider" bx-config='{current: [50,100], integerStep:10, endStep : 200}' class="slider clearfix">
+                    <span class="slider-bar"></span>
+                    <span class="slider-knob slider-knob-start" ></span>
+                    <span class="slider-knob slider-knob-end"></span>
+                </div>
+
+                <div id="slider3_txt"></div>
+
+            </div>
+            <p class="p">滑块区间 同时区间值是以10的倍数， integerStep:10</p>
+
+            <br> <br>
+            <h3 class="h3" style="text-align:left;padding:0 20px;">slider3</h3>
+            <div style="height:300px;padding:10px 40px;">
+                <div id="slider5" bx-name="slider" bx-config='{mode: "vertical", current: 70, startStep : 0, endStep : 100}' class="slider slider-vertical clearfix">
+                    <span class="slider-bar"></span>
+                    <span class="slider-knob"></span>
+                </div>
+            <div id="slider5_txt" style="text-align:left;"></div>
+            </div>
+            <p class="p" style="text-align:left;margin-top: 20px;margin-left:39px;">垂直滑块 </p>
+         </div>
+        <script>
+            KISSY.ready(function(S) {
+                KISSY.use("brix/core/pagelet,brix/gallery/slider/index.css", function(S, Pagelet) {
+                    var config = {
+                        tmpl:'#J_container'
+                    }
+                    var p = new Pagelet(config);
+                    p.addBehavior();
+
+                    p.ready(function(){
+                        var slider1 = p.getBrick('slider1');
+                        slider1.on("drag", function(d){
+                            S.one("#slider1_txt").html("当前值:" + d.current + "%")
+                        })
+
+
+                        var slider3 = p.getBrick('slider3');
+                        slider3.on("drag", function(d){
+                            S.one("#slider3_txt").html("当前值:" + d.current )
+                        })
+
+                       
+                        var slider5 = p.getBrick('slider5');
+                        slider5.on("drag", function(d){
+                            S.one("#slider5_txt").html("当前值:" + d.current )
+                        })
+
+                        S.one(window).on("resize", function(){
+                            slider1.resize();
+                            slider3.resize();
+                        });
+                    });
+
+                });
+            });
+        </script>
+    </body>
+</html>

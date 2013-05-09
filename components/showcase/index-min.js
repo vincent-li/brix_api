@@ -123,7 +123,7 @@ KISSY.add("components/showcase/index", function(S, Brick, Pagelet) {
                 var place = S.one(self.get('place'));
                 var ifr = document.getElementById("demoiframe");
                 ifr.src = path;
-                ifr.height = 0;
+                
                 if(!self.timer){
                     self._adjustHeight(ifr);
                     
@@ -150,6 +150,7 @@ KISSY.add("components/showcase/index", function(S, Brick, Pagelet) {
                 win = iframe.contentWindow,
                 doc = win.document,
                 height;
+
             try {
                 height = DOM.outerHeight(doc, true);
                 if (iframe.height !== height) {
@@ -189,7 +190,7 @@ KISSY.add("components/showcase/index", function(S, Brick, Pagelet) {
                 top:'-37px',
                 left:'45px',
                 'z-index': 0,
-                width: '200px'
+                width: '180px'
             });
             var anim = S.Anim(l,{
                     'opacity': '0'

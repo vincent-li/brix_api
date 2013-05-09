@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8' />
+        <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+        <meta name="description" content="smallcase:calendar" />
+        <title>brix_api</title>
+        
+        <!-- brix资源文件 -->
+        <script type="text/javascript" src="http://a.tbcdn.cn/s/kissy/1.3.0/kissy-min.js"></script>
+        <script src="http://a.tbcdn.cn/apps/e/brix/2.0/brix-min.js" bx-config="{autoConfig:true,componentsPath:'./',importsPath:'./'}"></script>
+        <link rel="stylesheet" href="http://a.tbcdn.cn/apps/e/brix/2.0/brix-min.css">
+
+        <!-- 组件依赖样式 -->
+        <link rel="stylesheet" href="/components/kwicks/kwicks.css" type="text/css">
+        <!-- doc.css文档自用css -->
+        <link rel="stylesheet" href="/css/demo.css" type="text/css">
+    </head>
+    <body class="fbody">
+        <div class="container">
+            <div class="container">
+                <div id="example7">
+                    
+                </div>
+                
+                <div id="example1">
+                    <ul id="ulkwicks1" class="kwicks" >
+                        <li class="kwick1"></li>
+                        <li class="kwick2"></li>
+                        <li class="kwick3"></li>
+                        <li class="kwick4"></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script id="tmpl_kwick" type="text/template">
+        <ul id="ulkwicks2" class="kwicks">
+            <li>
+                <div class="kwicks_inner_inner">
+                    <div class="bigLetter">L</div>
+                    <div class="smallLetters">is for the way you look at me</div>
+                </div>
+            </li>
+            <li>
+                <div class="kwicks_inner">
+                    <div class="bigLetter">O</div>
+                    <div class="smallLetters">is for the only one I see</div>
+                </div>
+            </li>
+            <li>
+                <div class="kwicks_inner">
+                    <div class="bigLetter">V</div>
+                    <div class="smallLetters">is very, very extraordinary</div>
+                </div>
+            </li>
+            <li>
+                <div class="kwicks_inner">
+                    <div class="bigLetter">E</div>
+                    <div class="smallLetters">is even more... I refuse to finish this...</div>
+                </div>
+            </li>
+        </ul>
+    </script>
+    <script type="text/javascript">
+        KISSY.ready(function(S) {
+            KISSY.use("brix/gallery/kwicks/", function(S, Kwicks) {
+                var kwicks1 = new Kwicks({
+                    el:'#ulkwicks1',//这里可以直接指定el，也可以是tmpl
+                    max : 205,
+                    spacing : 5,
+                    autoplay:true
+                });
+                 var kwicks2 = new Kwicks({
+                    container:'#example7',
+                    tmpl:S.one('#tmpl_kwick').html(),
+                    max: 200,
+                    duration: 0.4,
+                    sticky: true,
+                    autoplay:true
+                });
+                kwicks2.render();   
+            });
+        });
+    </script>
+</html>

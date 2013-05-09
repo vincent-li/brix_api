@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8' />
+        <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+        <meta name="description" content="smallcase:calendar" />
+        <title>brix_api</title>
+        
+        <!-- brix资源文件 -->
+        <script type="text/javascript" src="http://a.tbcdn.cn/s/kissy/1.3.0/kissy-min.js"></script>
+        <script src="http://a.tbcdn.cn/apps/e/brix/2.0/brix-min.js" bx-config="{autoConfig:true,autoPagelet:true,componentsPath:'./',importsPath:'./'}"></script>
+        <link rel="stylesheet" href="http://a.tbcdn.cn/apps/e/brix/2.0/brix-min.css">
+        <!-- doc.css文档自用css -->
+        <link rel="stylesheet" href="/css/demo.css" type="text/css">
+    </head>
+    <body class="fbody">
+        <script type="text/tmpl" id="timer_tmpl">
+            <span class="timer-title">距离你看完还剩：</span>
+            {{#m}}
+                <span bx-tmpl="m" bx-datakey="m" class="timer-mins timer-num">{{m}}
+                </span>分
+            {{/m}}
+            {{#s}}
+                <span bx-tmpl="s" bx-datakey="s" class="timer-secs timer-num">{{s}}
+                </span>
+                {{#hs}}.<span bx-tmpl="hs" bx-datakey="hs" class="timer-hsecs timer-num">{{hs}}
+                {{/hs}}秒
+            {{/s}}
+        </script>
+        <div class="container">
+            <div bx-name="timer" class="timer" bx-config="{tmpl:'#timer_tmpl',updateTime:180000,units:'m',interval:100}" style="font-size: 22px;padding: 20px 0;">
+            </div>
+        </div>
+    </body>
+</html>

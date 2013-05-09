@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset='utf-8' />
+        <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+        <meta name="description" content="smallcase:calendar" />
+        <title>brix_api</title>
+        
+        <!-- brix资源文件 -->
+        <script type="text/javascript" src="http://a.tbcdn.cn/s/kissy/1.3.0/kissy-min.js"></script>
+        <script src="http://a.tbcdn.cn/apps/e/brix/2.0/brix-min.js" bx-config="{autoConfig:true,componentsPath:'./',importsPath:'./'}"></script>
+        <link rel="stylesheet" href="http://a.tbcdn.cn/apps/e/brix/2.0/brix-min.css">
+        <!-- doc.css文档自用css -->
+        <link rel="stylesheet" href="/css/demo.css" type="text/css">
+        <style type="text/css">
+            .section {width:990px;margin:0 auto;padding:20px 0;clear:both;}
+            .switcher-label{float:left;padding:0px 5px;color:#666;}
+            .switcher{float:left;}
+            .config-desc{margin-left:80px;float:left;}
+            .config-desc strong{padding:0 10px;color:#606060}
+            .config-blue strong{color:#488FCD}
+            .result-show{color:#101010}
+        </style>
+    </head>
+    <body class="fbody">
+        <div class="container" style="text-align: left;padding-left: 50px;">
+            <div class="section " id="test_container1">
+                <p class="p">
+                    <strong>无设置项</strong>
+                </p>
+                <div id="brick1" bx-name="switcher" class="switcher">
+                    <span class="switcher-trigger"></span>
+                </div>
+                <span class="config-desc">
+                    <strong>底色不变蓝</strong>
+                    <span id="switcher_result1" class="result-show"></span>
+                </span>
+            </div>
+
+            <div class="section" id="test_container2">
+                <p class="p">
+                    <strong>“是” 或 “否” 的设置项</strong>
+                </p>
+                <span class="switcher-label">否</span>
+                <div id="brick2" class="switcher">
+                    <span class="switcher-trigger"></span>
+                </div>
+                <span class="switcher-label">是</span>
+                <span class="config-desc config-blue">
+                    <strong>底色变蓝</strong>
+                    <span id="switcher_result2" class="result-show"></span>
+                </span>
+            </div>
+
+            <div id="J_Pagelet_container">
+                <div class="section" id="test_container3">
+                    <p class="p">
+                        <strong>“A” 或 “B” 的设置项</strong>
+                    </p>
+                    <span class="switcher-label">苹果</span>
+                    <div bx-name="switcher" bx-config="{switchOn: false,switchStatus: false}" id="brick3" class="switcher">
+                        <span class="switcher-trigger"></span>
+                    </div>
+                    <span class="switcher-label">香蕉</span>
+                    <span class="config-desc">
+                        <strong>底色不变蓝</strong>
+                        <span id="switcher_result3" class="result-show"></span>
+                    </span>
+                </div>
+
+                <div class="section" id="test_container4">
+                    <p class="p">
+                        <strong>可尽量将内容提炼成判断句，作为开关标题</strong>
+                    </p>
+                    <span class="switcher-label">开启选项?</span>
+                    <span class="switcher-label">否</span>
+                    <div bx-name="switcher" id="brick4" class="switcher">
+                        <span class="switcher-trigger"></span>
+                    </div>
+                    <span class="switcher-label">是</span>
+                    <span class="config-desc config-blue">
+                        <strong>底色变蓝</strong>
+                        <span id="switcher_result4" class="result-show"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+		<!--brix begin-->
+        <script>
+            KISSY.ready(function(S) {
+                KISSY.use("brix/gallery/switcher/,brix/gallery/switcher/index.css", function(S, Switcher) {
+                    var switcher1 = new Switcher({
+                        tmpl:'#brick1',
+                        switchOn:  true,
+                        switchStatus: false
+                    });
+                    switcher1.on('switched',function(e){
+                        S.one('#switcher_result1').html('switched to ' + e.value);
+                    });
+
+                    var switcher2 = new Switcher({
+                        tmpl:'#brick2',
+                        switchOn:  true,
+                        switchStatus: true
+                    });
+                    switcher2.on('switched',function(e){
+                        S.one('#switcher_result2').html('switched to ' + e.value);
+                    });
+
+                });
+
+                KISSY.use("brix/core/pagelet", function(S, Pagelet) {
+                    var config = {
+                        tmpl:'#J_Pagelet_container'
+                    };
+
+                    var pagelet = new Pagelet(config);
+                    pagelet.render();
+                    pagelet.addBehavior();
+                    pagelet.ready(function() {
+                        pagelet.getBrick('brick3').on('switched',function(e){
+                            var msg = '';
+                            msg = e.value ? '香蕉':'苹果';
+                            S.one('#switcher_result3').html('switched to ' + msg);
+                        });
+                        pagelet.getBrick('brick4').on('switched',function(e){
+                            S.one('#switcher_result4').html('switched to ' + e.value);
+                        });
+                    });
+                    
+                });
+
+            });
+        </script>
+        <!--brix end-->
+    </body>
+</html>

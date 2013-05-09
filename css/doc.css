@@ -812,7 +812,7 @@ h3{
 
 .nav > .down > .entries{
     position: relative;
-    left: 147px;
+    left: 123px;
     width: 206px;
 }
 
@@ -884,4 +884,8 @@ ol,ul{
     position:absolute;
     left:-9999px;
     top:-9999px;
+}
+
+.content img{
+  height: 500px;
 }

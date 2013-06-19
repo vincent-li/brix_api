@@ -262,26 +262,29 @@ KISSY.add("components/showcase/index", function(S, Brick, Pagelet) {
                     if(n.attr('href')===ha){
                         n.parent().addClass('current');
                     }
-                    n.on('click',function(e){
-                        var tar = e.target;
-                        var cur = el.one('.current');
-                        if(cur){
-                            cur.removeClass('current');
-                        }
-                        if(tar){
-                            S.one(tar).parent().addClass('current');
-                        }
-                    });
                 });
             }
             S.one(window).on('hashchange', function() {
-                var h = window.location.hash;
+                var h = ha = window.location.hash;
                 h = h.split('#!')[1];
                 if(h.indexOf('&')>-1){
                     h = h.split('&')[0];
                 }
                 var base = self.get('basepath');
                 self._renderUI(base+h+'.html');
+                if(el && eltag){
+                    var cur = el.one('.current');
+                    if(cur){
+                        cur.removeClass('current');
+                    }
+                    var all = el.all(eltag);
+                    S.each(all, function(n){
+                        n = S.one(n);
+                        if(n.attr('href')===ha){
+                            n.parent().addClass('current');
+                        }
+                    });
+                }
             });
         }
     });

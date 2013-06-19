@@ -1,0 +1,69 @@
+<div>
+    <blockquote>
+        <h3>Brix 钩子</h3>
+        <small>这一节，为大家详细的介绍一下Brix中钩子的使用</small>
+    </blockquote>
+    <article>
+    <section class="content">
+        <p>我们希望读者可以由浅入深的阅读brix的知识。在这里会介绍钩子的使用，原因就是很多读者已经在以前的学习中遇到了很多诸如<code>bx-name</code>、<code>bx-config</code>等写法。在这里把钩子彻底讲解下，会对诸位读者以后的学习大有裨益。</p>
+
+        <h4>bx-name</h4>
+        <p>组件名称，在同一个pagelet中唯一，和bx-path组合使用</p>
+        <p>new组件，并且模板中没有bx-tmpl，省略不写，如下模板：</p>
+<pre>
+<code>
+    &lt;div id="timercase" bx-name="timer" class="timer" 
+        bx-config="{tmpl:'#timer_tmpl',updateTime:180000,units:'m',interval:100}" style="font-size: 22px;padding: 20px 0;"&gt;&lt;/div&gt;
+</code>
+</pre>
+        <p><code>bx-name</code>指定当前元素调用的组件名称。我们在使用非new的方式创建组件的时候，会根据<code>bx-name</code>的值去调用相应的组件。如果组件名称是官方基础组件，不需要<code>bx-path</code>的标识。如果是本地组件需要配合<code>bx-path</code>使用。</p>
+
+        <h4>bx-path</h4>
+        <p>组件地址，一般是包名+文件路径，</p>
+        <p>需要说明bx-name和bx-path是配合使用的，也就是不仅仅要指定组件名称还需要组件路径。当且仅当，你引用的是平台提供的基础业务组件，并且bx-name等于组件名，就不用写bx-path。我们会按照约定从cdn上下载相应的组件代码。</p>
+        <p>假设你自己写了一个组件，目录结构如下：</p>
+
+<pre><code class="bash">my-project-root
+└──components
+    └── mycomponent
+        └── indx.js
+</code></pre>
+
+    <p>那么我们引用这个组件：<code>&lt;div bx-name="mycomponent" bx-path="components/mycomponent/" &gt;&lt;/div&gt;</code></p>
+
+    <h4>bx-config</h4>
+
+    <p>组件配置，动态渲染时候的参数，如：bx-config="{xx:'oo'}"完整代码：</p>
+
+<pre>
+<code>
+    &lt;div id="timercase" bx-name="timer" class="timer" 
+        bx-config="{tmpl:'#timer_tmpl',updateTime:180000,units:'m',interval:100}" style="font-size: 22px;padding: 20px 0;"&gt;&lt;/div&gt;
+</code>
+</pre>
+    <p>至于<code>bx-config</code>的具体内容是各个组件的具体规定。官方基础组件都有详细的使用介绍。会把<code>bx-config</code>的属性、值及含义提供给读者。</p>
+
+    <h4>bx-tmpl &amp; bx-datakey</h4>
+
+    <p>两个钩子组合使用，在数据更新时对模板重新渲染。</p>
+
+    <ul>
+    <li>bx-tmpl:组件模板(值等于bx-name)</li>
+    <li>datakey:组件数据对象key值，可以有多个key，以“,”分割，且支持对象的子对象，如“X.Y,Z.Y.X”</li>
+    </ul>
+
+
+    <p>完整代码：</p>
+<pre>
+<code>
+    &lt;script type="text/template" id="tmpl_helloword1"&gt;
+        &lt;div bx-name="dialog" bx-config="{xx:'oo'}" id="helloworld1"&gt;
+            &lt;span>Hello
+                &lt;span bx-tmpl="dialog" bx-datakey="helloworld1_xx_yy"&gt;{{helloworld1_xx_yy}}&lt;/span&gt;
+            &lt;/span&gt;
+        &lt;/div&gt;
+    &lt;/script&gt;
+</code>
+</pre>
+    <p>当组件数据发生变化或者程序主动调用<code>setChrunkData</code>方法时候，brix根据<code>bx-tmpl</code>指定的模版，根据<code>bx-datakey</code>指定的key值去重新渲染模版中对应的内容。</p>
+</div>

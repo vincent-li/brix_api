@@ -1,0 +1,84 @@
+<div>
+    <blockquote>
+        <h3>Events</h3>
+        <small>事件代理的秘密</small>
+    </blockquote>
+    <article>
+        <section class="content">
+
+            <p>brix原生支持事件挂载。包括元素的事件，document的时间，还有window的事件。分别在组件<code>EVENTS</code>,<code>DOCEVENTS</code>,<code>WINEVENTS</code>属性中指明。下面来看下具体怎么做。还是以上篇的Keystone为例子。</p>
+
+<pre>
+<code>
+    KISSY.add('components/keystone/index', function(S, Brick) {
+
+        function Keystone() {
+            Keystone.superclass.constructor.apply(this, arguments);
+        }
+
+        Keystone.EVENTS = {
+            "": { // 空表示事件直接绑定在 el 上
+                click: function() {
+                    // 这里的 this 指向当前组件实例，即 new HelloWorld 所返回的值
+                    top.console.log('节点被点击');
+                }
+            },
+            "#spanName": {
+                click: function(e){
+                    e.halt();   // 阻止冒泡
+                    this.set('name', "I'm Clicked");
+                    S.one(e.currentTarget).html(this.get('name'));
+                }
+            }
+        };
+        Keystone.DOCEVENTS = {
+            "": { // 空表示事件直接绑定在document上
+                "click": function() {
+                    top.console.log('document 被点击');
+                }
+            }
+        };
+        Keystone.WINEVENTS = {
+            "": { // 空表示事件直接绑定在window上
+                "click": function() {
+                    top.console.log('window 被点击');
+                }
+            }
+        };
+        // 在组件加载、渲染完毕之后，对组件节点内的 p 做动画。
+        S.extend(Keystone, Brick, {
+            initialize: function() {
+                var el = this.get('el');
+            }
+        });
+
+        return Keystone;
+    }, {
+        requires: ["brix/core/brick"]
+    });
+</code>
+</pre>
+        <p>以上写法比较容易理解。就是设置组件对象下<code>EVENTS</code>,<code>DOCEVENTS</code>,<code>WINEVENTS</code>三个属性。对象key可以支持空字符串,id,class选择。例如</p>
+<pre>
+<code>
+     Keystone.EVENTS = {
+        "": { // 空表示事件直接绑定在 el 上
+            click: function() {
+                // 这里的 this 指向当前组件实例，即 new HelloWorld 所返回的值
+                top.console.log('节点被点击');
+            }
+        },
+        "#spanName": {
+            click: function(e){
+                e.halt();   // 阻止冒泡
+                this.set('name', "I'm Clicked");
+                S.one(e.currentTarget).html(this.get('name'));
+            }
+        }
+    };
+</code>
+</pre>
+        <p>空事件名称就是直接绑定在组件的根节点上，也就是大家初始化组件时指定的el属性节点或者是出现<code>bx-name</code>的节点。 <code>click</code>代表的是事件类型。同时也可以支持绑定到组件节点下的子节点，使用<code>#</code>id选择器，亦可用<code>.</code>class选择器。</p>
+        </section>
+    </article>
+</div>

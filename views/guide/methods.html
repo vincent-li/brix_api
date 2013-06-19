@@ -1,0 +1,32 @@
+<div>
+    <blockquote>
+        <h3>METHODS：公共方法</h3>
+        <small>组件的公共方法</small>
+    </blockquote>
+    <article>
+        <section class="content">
+            <p>给 Keystone 增加 show、hide 方法：</p>
+<pre>
+<code>
+    Keystone.METHODS = {
+        show:function () {
+            this.get('el').fadeIn();
+        },
+        hide:function () {
+            this.get('el').fadeOut();
+        }
+    };
+</code>
+</pre>
+        <div class="tips">当前上下文（this）是当前组件的实例对象</div>
+
+        <p>亲，还有一件事情很重要，将 <code>Keystone.METHODS</code> 成员复制到 <code>Keystone.prototype</code> 上。</p>
+<pre>
+<code>
+    S.augment(Keystone, Keystone.METHODS);
+</code>
+</pre>
+            <p>上一步很重要，目的就是把这些组件方法开放出去供组件实例使用。至于具体组件内部需要提供什么方法，就要视组件不同而不同了。</p>
+        </section>
+    </article>
+</div>

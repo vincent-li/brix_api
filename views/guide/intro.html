@@ -7,7 +7,7 @@
     
   <section class="content">
     <p>
-        如 <a href="index.html">首页 Brix 介绍</a> 所言，Brix 是一淘 UX 部门将前端工作平台化的努力成果，<a href="../../intro.html">它的目的</a> 是让后端能够快速扩展组件模板代码来完成实际项目需求，而前端工程师只需要完成通用组件、提供组件 DOM 结构模板即可。详细的技术思想，请看<a href="../../intro.html">Brix Framework 简介</a>。
+        如 <a href="index.html">首页 Brix 介绍</a> 所言，Brix 是一淘 UX 部门将前端工作平台化的努力成果，<a href="intro.html">它的目的</a> 是让后端能够快速扩展组件模板代码来完成实际项目需求，而前端工程师只需要完成通用组件、提供组件 DOM 结构模板即可。详细的技术思想，请看<a href="intro.html">Brix Framework 简介</a>。
     </p>
 
     <p>
@@ -21,7 +21,7 @@
     <h4>模块与继承</h4>
 
     <p>
-        一个合格的组件必须是 KISSY 模块。我们使用 KISSY 1.2 作为基础，它提供了类似 RequireJS、SeaJS等的模块加载机制。详情可以看 <a href="http://docs.KISSYui.com/docs/html/api/seed/loader/" target="_blank">KISSY Loader</a>文档，在这里我们只做简要说明。简要的模块封装代码如下：
+        一个合格的组件必须是 KISSY 模块。我们使用 KISSY 1.3 作为基础，它提供了类似 RequireJS、SeaJS等的模块加载机制。详情可以看 <a href="http://docs.KISSYui.com/docs/html/api/seed/loader/" target="_blank">KISSY Loader</a>文档，在这里我们只做简要说明。简要的模块封装代码如下：
     </p>
 
 <!-- code -->
@@ -39,7 +39,6 @@
 <!-- code -->
 
     <h4>文件组织</h4>
-
     <p>
         首先要搞清楚的是模块名。假设你的组件名叫做<a href="http://en.wikipedia.org/wiki/Keystone_(architecture)">Keystone</a>，在 Brix 中，它的代码应该这么放：
     </p>
@@ -61,10 +60,17 @@
     <p>
         <code>demo/gallery/keystone/</code> 目录，用来放置你的组件的演示文件，以及相关的样式。样式不强制用 LESS 来写。<code>src/gallery/keystone/</code> 目录则用来放置组件相关的代码，入口是 <code>index.js</code>，其他模块酌情添加。
     </p>
-
+    <p>当然以上所指是官方组件的存放结构。如果只是在本地开发组件又当如何呢。记得<a href="#!guide/prep">brix前瞻</a>中讲过。就是在你<code>brix.js</code>引用的时候<code>bx-config</code>中<code>componentsPath:'./'</code>所指定的内容。具体目录结构如下：</p>
+<pre><code class="bash">my-project-root
+└──components
+    └── keystone
+        └── index.js
+└──other-folder
+</code></pre>
+    <p>如果您在跟着我们的文档敲代码，现在要在您的项目下建立以上目录。</p>
     <h4>demo</h4>
 
-    <p><code>demo/gallery/keystone/keystone.html</code> 的应该长这样：</p>
+    <p>那么在假设我们已经书写了一个组件的基础上，怎么引用这个组件呢？<a href="#!guide/prep">brix前瞻</a>中也有提及，调用页面代码：</p>
 
 <!-- code -->
 <div class="highlight"><pre><code class="html"><span class="cp">&lt;!DOCTYPE HTML&gt;</span>
@@ -72,20 +78,20 @@
 <span class="nt">&lt;head&gt;</span>
   <span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">&quot;Content-Type&quot;</span> <span class="na">content=</span><span class="s">&quot;text/html; charset=utf-8&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;title&gt;</span>Brix Keystone Demo<span class="nt">&lt;/title&gt;</span>
-  <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">href=</span><span class="s">&quot;../../../dist/brix.css&quot;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;http://a.tbcdn.cn/s/kissy/1.2.0/kissy.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;../../config.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;http://a.tbcdn.cn/s/kissy/1.3.0/kissy.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;http://a.tbcdn.cn/apps/e/brix/2.0/brix-min.js&quot;</span><span class="na">bx-config=</span><span class="s">&quot;{debug:true,autoConfig:true,componentsPath:'./',importsPath:'./'}&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">href=</span><span class="s">&quot;http://a.tbcdn.cn/apps/e/brix/2.0/brix-min.css&quot;</span><span class="nt">&gt;</span>
 <span class="nt">&lt;/head&gt;</span>
 <span class="nt">&lt;body&gt;</span>
   <span class="c">&lt;!-- 组件相关的 HTML 代码 --&gt;</span>
   <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
-<span class="nx">KISSY</span><span class="p">.</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">S</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">KISSY</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;brix/gallery/keystone/&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">S</span><span class="p">,</span> <span class="nx">Keystone</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kd">var</span> <span class="nx">keystone</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Keystone</span><span class="p">({</span>
-            <span class="c1">// config</span>
+        <span class="nx">KISSY</span><span class="p">.</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">S</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">KISSY</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;components/keystone/&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">S</span><span class="p">,</span> <span class="nx">Keystone</span><span class="p">)</span> <span class="p">{</span>
+                <span class="kd">var</span> <span class="nx">keystone</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Keystone</span><span class="p">({</span>
+                    <span class="c1">// config</span>
+                <span class="p">});</span>
+            <span class="p">});</span>
         <span class="p">});</span>
-    <span class="p">});</span>
-<span class="p">});</span>
   <span class="nt">&lt;/script&gt;</span>
 <span class="nt">&lt;/body&gt;</span>
 <span class="nt">&lt;/html&gt;</span>
@@ -96,10 +102,10 @@
     <h4>继承自 Brick</h4>
 
     <p>
-        所有的 Brix 组件都继承自 <a href="/brix/core/3-brick">core/brick</a>，拱顶石（Keystone）虽然是建筑设计里最重要的板砖（Brick），但毕竟还是板砖。所以，它要继承 <code>Brick</code>：
+        所有的 Brix 组件都继承自 <a href="/brix/core/3-brick">core/brick</a>，拱顶石（Keystone）虽然是建筑设计里最重要的板砖（Brick），但毕竟还是板砖。所以，它要继承 <code>Brick</code>，看下具体的<code>components/keystone/index.js</code>的实现：
     </p>
 
-<div class="highlight"><pre><code class="js"><span class="nx">KISSY</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;brix/gallery/keystone/&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">S</span><span class="p">,</span> <span class="nx">Brick</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="js"><span class="nx">KISSY</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;components/keystone/index&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">S</span><span class="p">,</span> <span class="nx">Brick</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">function</span> <span class="nx">Keystone</span><span class="p">()</span> <span class="p">{</span>
         <span class="nx">Keystone</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
     <span class="p">}</span>
@@ -117,7 +123,7 @@
 
     <p>我们先给 Keystone 加点功能：</p>
 
-<div class="highlight"><pre><code class="js"><span class="nx">KISSY</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;brix/gallery/keystone/index&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">S</span><span class="p">,</span> <span class="nx">Brick</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="js"><span class="nx">KISSY</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;components/keystone/index&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">S</span><span class="p">,</span> <span class="nx">Brick</span><span class="p">)</span> <span class="p">{</span>
 
     <span class="kd">function</span> <span class="nx">Keystone</span><span class="p">()</span> <span class="p">{</span>
         <span class="nx">Keystone</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
@@ -167,7 +173,7 @@
 
     <p>我们可以直接 <code>new Keystone</code> 来初始化这个组件：</p>
 
-<div class="highlight"><pre><code class="js"><span class="nx">KISSY</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;brix/gallery/keystone/&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">S</span><span class="p">,</span> <span class="nx">Keystone</span><span class="p">){</span>
+<div class="highlight"><pre><code class="js"><span class="nx">KISSY</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;components/keystone/&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">S</span><span class="p">,</span> <span class="nx">Keystone</span><span class="p">){</span>
     <span class="k">new</span> <span class="nx">Keystone</span><span class="p">({</span>
         <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#keystone1&#39;</span>
     <span class="p">});</span>

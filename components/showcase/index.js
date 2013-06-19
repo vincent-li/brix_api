@@ -71,7 +71,18 @@ KISSY.add("components/showcase/index", function(S, Brick, Pagelet) {
                                  tmpl: '#'+pid
                             });
                             if(typeof hljs !== 'undefined' && hljs){
+                                var pres = S.all('pre');
                                 hljs.initHighlighting();
+                                S.each(pres,function(n){
+                                    var code = S.one(n).one('code');
+                                    var la = code.attr('language');
+                                    if(la){
+                                        code.addClass(la);
+                                        var lacode = hljs.highlight(la,code.html());
+                                        code.html(lacode.value);
+                                    }
+                                });
+                                //hljs.initHighlighting();
                             }
                             if(script){
                                 var F = new Function(script);

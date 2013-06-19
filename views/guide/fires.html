@@ -1,0 +1,46 @@
+<div>
+    <blockquote>
+        <h3>FIRES：自定义事件</h3>
+        <small>组件提供自定义事件</small>
+    </blockquote>
+    <article>
+        <section class="content">
+            <p>给Keystone的show,hide方法中添加自定义事件show和hide;以下是定义在Keystone/index.js里面的代码</p>
+<pre>
+<code>
+    //事件的定义，提高代码阅读
+    Keystone.FIRES = {
+        show:'show_func',
+        hide:'hide_func'
+    }
+    Keystone.METHOD = {
+        show:function () {
+            this.get('el').fadeIn();
+            this.fire(Keystone.FIRES.show,{data:'showdata'});
+        },
+        hide:function () {
+            this.get('el').fadeOut();
+            this.fire(Keystone.FIRES.hide,{data:'hidedata'});
+        }
+    };
+</code>
+</pre>
+
+        <h3 id="h4">js代码:</h3>
+<pre>
+<code>
+    KISSY.use('components/keystone/',function(S,Keystone){
+        var Keystone = new HelloWorld({tmpl:'#Keystone'});
+        Keystone.on('show_func',function (ev) {
+            top.console.log('自定义事件show触发,数据为'+ev.data);
+        });
+        Keystone.on('hide_func',function (ev) {
+            top.console.log('自定义事件hide触发,数据为'+ev.data);
+        });
+    });
+</code>
+</pre>
+        <p>代码其实很简单，对于组件灵活性有着莫大的意义。意义在于你可以提供N多个自定义的事件，方便使用者在自己使用过程中定制你的组件。举个例子，比如上面的例子，如果我是组件使用者，我希望在组件显示或者消失以后做一些和我自己相关的工作。那么开发者可以定义<code>FIRES</code>事件，让使用者在使用时绑定事件<code>show_func</code>,然后开发者就可以在某个方法中调用这个函数，调用使用<code>this.fire(Keystone.FIRES.show,{data:'showdata'});</code>后面的是参数。这样开发者可以使组件更灵活。当我们无法满足所有用户特殊需求的时候，那么把这个权利交给用户，让他们按照开发者的规范，绑定自定义的事件，便可满足他的要求。</p>
+        </section>
+    </article>
+</div>
